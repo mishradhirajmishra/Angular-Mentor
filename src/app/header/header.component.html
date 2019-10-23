@@ -1,0 +1,36 @@
+<!--================ Header Menu Area start =================-->
+<header class="header_area">
+  <div class="main_menu">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid box_1620">
+        <a class="navbar-brand logo_h" (click)="home()"><img class="logo" src="assets/img/logo.svg" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+          <ul class="nav navbar-nav menu_nav justify-content-end">
+              <li class="nav-item"><a href="https://about.mentorbaba.co/babastart.html" class="nav-link" >BabaStart</a></li>
+            <li class="nav-item active"><a href="https://about.mentorbaba.co/babavaluator.html"  class="nav-link">BabaValuator</a></li> 
+            <!-- <li class="nav-item"><a class="nav-link" routerLink="events">Events</a></li>  -->
+            <li class="nav-item"><a href="http://babainc.mentorbaba.co/" class="nav-link">BabaInc.</a></li>
+            <li class="nav-item"><a href="https://babanews.mentorbaba.co/" class="nav-link" >BabaNews</a></li>  
+            <li class="nav-item"><a href="https://forum.mentorbaba.co/" class="nav-link" >Forum</a></li>            
+            <!-- <li class="nav-item"><a class="nav-link" routerLink="contact">Contact</a></li> -->
+              <li class="nav-item" ><a href="https://about.mentorbaba.co/" class="nav-link" >About</a></li>
+              <li class="nav-item" *ngIf="!loggedIn"><a class="nav-link" routerLink="login">Login</a></li>
+                <li class="nav-item" *ngIf="loggedIn"><a class="nav-link" (click)="logout()" >logout</a></li>  
+          </ul>
+
+          <div class="nav-right text-center text-lg-right py-4 py-lg-0">
+            <a class="button f-20" *ngIf="!loggedIn" routerLink="register">Register</a>
+            <a class="button  f-20" *ngIf="loggedIn" (click)="dashboard()" routerLink="register">Dasboard</a>
+          </div>
+        </div> 
+      </div>
+    </nav>
+  </div>
+</header>
+<!--================Header Menu Area =================-->

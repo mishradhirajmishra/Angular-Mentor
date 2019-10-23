@@ -1,0 +1,52 @@
+
+<!--================Blog Area =================-->
+<section class="blog_area section-margin">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 mb-5 mb-lg-0">
+          <div class="blog_left_sidebar">
+            <article class="">
+  
+              <div class="">
+                <div class="text-center" >
+                  <h1 class="text-color ">Education Dropdown</h1>
+                  <div class="searchbar">
+
+                      <input class="search_input form-control1" type="text" name="" [(ngModel)]="nameFilter.name"
+                        placeholder="Search...">
+                    </div>
+                  <br>        
+                </div>
+                <div class="form white-background">
+
+                   <table class="table text-danger table-responsive">
+                      <thead>
+                          <tr><td  class="input">
+                            <input class="form-control" type="hidden" [(ngModel)]="intrestData.id">
+                            <input (keyup)="nameData()" class="form-control" type="text" [(ngModel)]="intrestData.name">
+                           </td><td ><button [disabled]="enable" class=" btn-add " (click)="submit()">  {{btnText}}</button>
+                            </td>
+                             <td > <button class=" btn-add white "(click)="reset()">Reset</button>
+                           </td></tr>
+                         </thead>
+                    <tbody>                   
+                      <tr *ngFor="let intrest of allIntrest | filterBy: nameFilter; let i=index">
+                      <td class="ind">{{i+1}}</td> 
+                      <td>{{intrest.name}}</td> 
+                     <td> <button class=" btn-edit " (click)="edit(intrest)"><i class="fa-pencil" title="Edit"></i> Edit</button></td>
+                     </tr>
+                    </tbody>
+                   </table>
+          
+                </div>
+              </div>
+            </article>
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  <!--================Blog Area =================-->
+  

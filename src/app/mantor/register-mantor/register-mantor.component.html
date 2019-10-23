@@ -1,0 +1,122 @@
+<!--================Blog Area =================-->
+<section class="blog_area section-margin">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+
+        </div>
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="blog_left_sidebar">
+            <article class="blog_item">
+              <div class="blog_details" *ngIf="notsubmited; else response ">
+                <div class="d-inline-block">
+                  <h1 class="text-color">Be a Mentor</h1>
+                </div>
+
+                <div class="form white-background">
+                  <form  [formGroup]="registerMantor" (ngSubmit)="register()">
+                    <div class="form-group">
+                      <input class="form-control"(blur)="ifMantorExist()" [class.invalid]="userName.invalid && userName.touched" type="text" formControlName="username" placeholder="username">
+                     <small class="form-text text-danger">{{userexist}}</small>
+                      <small class="form-text text-danger" *ngIf="userName.invalid && userName.touched">User Name is required</small>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" (blur)="ifMantorEmailExist()" type="email" [class.invalid]="email.invalid && email.touched" formControlName="email"  placeholder="email">
+                      <small class="form-text text-danger">{{emailexist}}</small>
+                      <div *ngIf="email.invalid && email.touched">
+                      <small class="form-text text-danger" *ngIf="email.errors?.email">email is invalid</small>
+                      <small class="form-text text-danger" *ngIf="email.errors?.required">email is required</small>
+                    </div>
+                    <div class="form-group">
+                          <input class="form-control" type="text" formControlName="skype_id" [class.invalid]="skypeId.invalid && skypeId.touched" placeholder="skype id">
+                        <small class="form-text text-danger" *ngIf="skypeId.invalid && skypeId.touched"> Skype Id required</small>
+                     </div>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="password" [class.invalid]="password.invalid && password.touched" formControlName="password" placeholder="Password">
+                      <div *ngIf="password.invalid && password.touched">
+                        <small class="form-text text-danger" *ngIf="password.errors?.minlength">Minimum 8 char required</small>
+                        <small class="form-text text-danger" *ngIf="password.errors?.required">Password is required</small>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                   <input class="form-control" type="password" [class.invalid]="registerMantor.errors?.misMatch || (cpassword.errors?.required && cpassword.errors?.touched)"  formControlName="cpassword" placeholder="Repeat Password">
+                  
+                   <div *ngIf="registerMantor.errors?.misMatch || (cpassword.errors?.required && cpassword.errors?.touched)">
+                   <small class="form-text text-danger" *ngIf="registerMantor.errors?.misMatch">password mismatch</small>
+                    <small class="form-text text-danger" *ngIf="cpassword.errors?.required">Password is required</small>
+                   </div> 
+                  </div>
+                  <!-- ------------------------------------------ -->
+                  <!-- <div class="form-group">
+                      <div class="form-group" >
+                          <select class="form-control w-100 mb-3" formControlName="startuparea">
+                              <option value="">What are can ypu help startup in ?</option>
+                              <option *ngFor="let st of startuparea" value="{{st.id}}">{{st.name}}</option>                       
+                          </select>
+                      </div>
+                    </div> -->
+                  <!-- ------------------------------------------- -->
+                    <div class="form-group">
+                      <input class="form-control" (blur)="codeValidation()" type="text" formControlName="invitecode"  [class.invalid]="invitecodeData.invalid && invitecodeData.touched"  placeholder="Invite Code ">
+                      <small class="form-text text-danger">{{validCode}}</small>
+                      <small class="form-text text-danger" *ngIf="invitecodeData.invalid && invitecodeData.touched">User Name is required</small>
+                    </div>
+             
+                    <div class="form-group">
+                 
+                      <span id="captcha"> </span><span class="ref"> <i (click)="createCaptcha()"style="font-size:24px" class="fa">&#xf021;</i></span>
+                   </div>
+                   <div class="form-group">                                          
+                   <input type="text" (blur)="validateCaptcha()" formControlName="captchaVal" name="captchaVal" placeholder="Captcha" id="cpatchaTextBox" autocomplete="off"/>                
+      
+                    <small class="form-text text-danger" *ngIf="!flag  && cap.touched">Captcha is invalid</small>
+                  </div>
+                    <div class="form-check">
+                      <input id="my-input" class="form-check-input" formControlName="term" type="checkbox" checked>
+                      <label for="my-input" class="form-check-label" ><a href="http://about.mentorbaba.co/privacy.html">Agree to our Terms and Privacy Policy</a></label>
+                      </div>
+                     <br>
+            
+                    <div class="form-group">
+                      <button  class="button button1 " [disabled]="!flag || flag2 || userexist || skypeId.invalid || registerMantor.invalid || ! registerMantor.get('term').value"   value="Submit">Register</button>
+                    </div>
+                  </form>
+                   <h2 class="text-center">Already have an Account ? Login Here</h2>
+                   <button  (click)="login()"  class="button button1 white">Login </button>
+                </div>
+              </div>
+              <ng-template #response>
+                  <div class="blog_details" *ngIf="!error">
+                      <div class="card">
+                          <div class="card-body text-center">
+                            <h1>Registered Successfully</h1>
+                            <p>Please login To manage your account</p>
+                            <button  (click)="login()"  class="button button1">Login </button>
+                            <h3 class="text-center">or</h3>
+                            <button  (click)="home()"  class="button button1 white">Go to home </button>
+                          </div>
+                        </div>
+                  </div>
+                  <!-- <div class="blog_details" *ngIf="error">
+                      <div class="card">
+                          <div class="card-body text-center">
+                            <h1 class="text-danger">Some Server error occur !</h1>
+                            <p>Please try again later</p>
+                            <button  (click)="mantorReg()"  class="button button1">Try Again </button>
+                              <h3 class="text-center">or</h3>
+                            <button  (click)="home()"  class="button button1 white">Go to home </button>
+  
+                          </div>
+                        </div>
+                  </div> -->
+              </ng-template>
+            </article>      
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  <!--================Blog Area =================-->
+  

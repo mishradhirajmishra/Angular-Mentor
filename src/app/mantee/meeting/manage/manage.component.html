@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-md-12 ">
+        <div  *ngIf="msg">
+                 <div class="alert alert-success"> 
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>                 
+                 {{msg}} !
+            </div>
+        </div>
+        <br>
+      <h2 class="text-color">Manage Meeting Requests</h2>
+      <!-- {{allMeeting |json}} -->
+      <br>
+      <div *ngIf="!skypeInstaled" class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong><i class="fa fa-exclamation-circle" aria-hidden="true"></i></strong> Make sure that you have installed skype before calling. <a class="button sky" href="https://www.skype.com/en/get-skype/"> Install Skype</a>
+      </div>
+      <!-- <h6 class="bold">Meetings Today</h6>   -->
+    </div>
+    <div class="col-md-3 center" *ngFor="let meeting of allMeeting">
+      <p class="text-color1">{{meeting.start_time | date:'mediumDate'}}</p>
+      <p class="text-color">{{meeting.start_time | date:'hh:mm a'}} - {{meeting.end_time | date:'hh:mm a'}}</p>
+      <img class="img-fluid circle" src="{{meeting.image}}" alt="">
+      <h3 class="text-color">{{meeting.name}}</h3>
+
+      <p class="text-color curs-point" (click)="profile(meeting.admin_key)" >View profile</p>
+<!-- ----------------------------- -->
+<button class="button button-ch" type="button"data-toggle="modal" [attr.data-target]="'#myModal'+meeting.id">View Reason</button>   
+<!-- Modal -->
+<div id="myModal{{meeting.id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content"> 
+      <div class="text-right padd"> 
+        <button type="button" class="close" data-dismiss="modal">&times;</button>  
+      </div>  
+      <div class="modal-body">
+        <p>{{meeting.meeting_comment}}</p>
+        <button *ngIf="meeting.status==1" data-dismiss="modal" class="button button-ch-model  green" (click)="acceptMeetingByAdmin(meeting.id)" type="button">Accept</button>
+        <button *ngIf="meeting.status==2" class="button button-ch-model green curs" type="button">Accepted</button>
+      </div>
+       
+    </div>
+
+  </div>
+</div>
+<!-- ----------------------------- -->
+     <button *ngIf="meeting.status==1" class="button button-ch green" (click)="acceptMeetingByAdmin(meeting.id)" type="button">Accept</button>
+      <button *ngIf="meeting.status==2" class="button button-ch green curs" type="button">Accepted</button>
+   <!-- ----------------------------- -->
+   <div *ngIf="meeting.status==2" class="dropdown">
+      <button class="btn button-ch green btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> <i class="fab fa-skype"></i> Skype
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a [href]="chaturl(meeting.audio)" class="skaip-buttons-cmd-call" data-skaip-buttons="off"><i  class='fas'>&#xf2a0;</i> Call</a></li>
+        <li><a [href]="chaturl(meeting.video)" class="skaip-buttons-cmd-videocall" data-skaip-buttons="off"><i  class='fas'>&#xf03d;</i> Videocall</a></li>
+        <li><a [href]="chaturl(meeting.voicemail)"  class="skaip-buttons-cmd-voicemail" data-skaip-buttons="off"><i class="fa fa-microphone" aria-hidden="true"></i> Voice message</a></li>
+        <li> <a [href]="chaturl(meeting.chat)"  class="skaip-buttons-cmd-chat" data-skaip-buttons="off"><i class="far fa-comment-dots" aria-hidden="true"></i> Chat</a></li>
+        <li> <a [href]="chaturl(meeting.sendfile)"  class="skaip-buttons-cmd-sendfile" data-skaip-buttons="off"><i  class='fas'>&#xf56e;</i> Send file</a></li>
+      </ul>
+  </div>
+<button class="button button-ch red" [disabled]="meeting.status==2" (click)="reject(meeting.id,meeting.reject_comment)" type="button"data-toggle="modal" [attr.data-target]="'#myModal1'+meeting.id">Reject</button>   
+<!-- Modal -->
+<div id="myModal1{{meeting.id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content"> 
+      <div class="text-right padd"> 
+        <button type="button" class="close" data-dismiss="modal">&times;</button>  
+      </div>  
+      <div class="modal-body">
+              <small *ngIf="msg" class="form-text text-red">{{msg}}</small>
+              <h6 class="text-color">Reason for Rejection</h6>
+              <form  [formGroup]="updateReject" (ngSubmit)="onSubmit()">
+              <div class="form-group">              
+                <input class="form-control hide" type="text" formControlName="id" value="meeting.id" >
+              </div>
+              <div class="form-group">                  
+                  <textarea rows="8" class="form-control" type="text" formControlName="reject_comment" > </textarea>
+              </div>
+              <div class="form-group">
+               <button type="submit"  class="button button1"   value="Submit">Submit</button>
+               </div>
+              </form>
+      </div>       
+    </div>
+  </div>
+</div>
+<!-- ----------------------------- -->
+    </div>
+  
+  </div>

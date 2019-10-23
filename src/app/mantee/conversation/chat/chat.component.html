@@ -1,0 +1,85 @@
+<!-- ----------------------------- -->
+<div class="row " (mousemove)="inactive()" (click)="updateStatus()">
+ 
+  <div class="col-md-6 offset-md-3">
+    <div id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar">
+    
+      <div class="popup-head">
+        <div class="row row1">
+            <div class="c-left pointer" (click)="gotoContact()">
+                <i class="fas fa-arrow-alt-circle-left"></i>
+               </div>
+          <div class="c-left">
+            <img class="img-thumbnail img-contact" [src]="chatprofile?.image">
+          </div>
+          <div class="col">
+            <span class="card-title-1">{{chatprofile?.name}}</span><span class="right-online"><i class="fa fa-circle"
+                aria-hidden="true"></i></span><br>
+            <span class="card-text-1">@{{chatprofile?.username}}</span><span
+              class="right-online">{{chatprofile?.role}}</span>
+          </div>
+     <!--  -->
+
+          <div class="c-left pointer ref" (click)="getMessageFromDb()">
+              <i  class="fa  fa-spin refresh-icon">&#xf021;</i>
+
+            </div>          
+        </div>
+      </div>
+      <div id="chat" class="chat_box_wrapper chat_box_small chat_box_active"
+        style="opacity: 1; display: block; transform: translateX(0px);">
+        
+        <div class="chat_box touchscroll chat_box_colors_a">
+          <!-- ----------- -->
+          <!-- {{ messageArray | json}} -->
+          <p id="top-chat"></p> 
+          <span *ngFor="let msg of messageArray">
+          <div class="chat_message_wrapper" *ngIf="msg.user_key==user_key">
+            <div class="chat_user_avatar">
+              <img class="img-thumbnail img-contact" [src]="chatprofile?.image">
+            </div>
+            <ul class="chat_message">
+              <li>
+                <p> {{msg.message}} </p>
+                
+              </li><br>
+              <span class="msg-date">{{msg.date | date:'LLL dd hh:mm a'}} </span>
+          
+            </ul>
+          </div>
+          <div class="chat_message_wrapper chat_message_right" *ngIf="msg.admin_key==user_key">
+            <div class="chat_user_avatar">
+              <img class="img-thumbnail img-contact" [src]="myProfileImage">
+            </div>
+            <ul class="chat_message">
+              <li>
+                <p> {{msg.message}} </p>
+              </li>
+               <br>
+              <span class="msg-date">{{msg.date | date:'LLL dd hh:mm a'}} </span>
+              <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i (click)="deleteMsg(msg.id)" class="fa fa-trash" aria-hidden="true"></i> -->
+    
+            </ul>
+          </div>
+          </span>
+          <p class="bottomscroll" id="bottom-chat"></p>
+          <!-- -------------------------------------- -->
+        </div>
+          
+      </div>
+      <div>
+   <!-- ================== -->
+   <small class="form-text text-red"> &nbsp;&nbsp;{{typingMsg}} </small>
+<div class="popup-head">
+      
+    <div class="form-inline">
+        <input (blur)="lefttyping()" (keyup)="typing()" type="text" [(ngModel)]="message" class="form-control1" placeholder="Type message here..." name="">
+        <button type="submit" (click)="sendMessage()" [disabled]="!message" class="btn btn-primary serch-btn" [autofocus]='true'>Send</button>
+    </div>         
+</div>
+<!-- ==================== -->
+
+    </div>
+  </div>
+</div>
+<!-- ------------------------- -->

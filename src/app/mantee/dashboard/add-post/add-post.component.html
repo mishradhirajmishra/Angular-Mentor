@@ -1,0 +1,35 @@
+<div class="row my-5">
+    <div *ngIf="submited">
+      <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button> 
+        <strong>Success!</strong> Updated Successfully !
+      </div>
+    </div>
+    <!-- {{allIntrest |json}} -->
+   
+    <div class="col-md-9">
+      <form [formGroup]="userPost" (ngSubmit)="addPost()">
+        <div class="form-group">
+          <input  placeholder="Youtube video url..." name="video"  formControlName="video" class="form-control" type="text">
+   
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" formControlName="description" name="description" rows="5"></textarea>
+          <button class="button-sub" [disabled]="(videoUrl.invalid && videoUrl.touched) || description.invalid"
+            type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3 col-sm-12">
+      <small class="form-text text-red tex-center" *ngIf="lengthMsg">{{lengthMsg}}</small>
+      <input type="file" id="file" class="inputfile" (change)="onSelectChange($event)" multiple />
+      <label class="button btn-ch1 mb-3" for="file">Upload image</label>
+       <div class="ex1">
+        <p class="mb-0" *ngFor="let in of allIntrest">
+          <label for="{{in.id}}"></label>
+          <input id="{{in.id}}" type="checkbox" class="primary"  name="{{in.id}}" [(ngModel)]="in.value">
+          {{in.name}}
+        </p>
+      </div>                    
+    </div>
+  </div>

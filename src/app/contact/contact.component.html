@@ -1,0 +1,53 @@
+<!--================Blog Area =================-->
+<section class="blog_area section-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+      </div>
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="blog_left_sidebar">
+          <article class="blog_item">
+
+            <div class="blog_details">
+              <a class="d-inline-block" >
+                <h1 class="text-color text-center">Contact Us</h1><br>
+                <h5>mentorBaba offer's the following services.</h5><br><br>
+                <small class="form-text text-danger">{{response}}</small>
+              </a>
+              <div class="form white-background" >
+                <form  [formGroup]="updateAccount" (ngSubmit)="register()">
+
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input class="form-control" [class.invalid]="userName.invalid && userName.touched" type="text" formControlName="name" placeholder="Your Name">
+                    <small class="form-text text-danger" *ngIf="userName.invalid && userName.touched">User Name is required</small>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control"  type="email" [class.invalid]="email.invalid && email.touched" formControlName="email"  placeholder="hello@example.com">
+                    <div *ngIf="email.invalid && email.touched">
+                    <small class="form-text text-danger" *ngIf="email.errors?.email">email is invalid</small>
+                    <small class="form-text text-danger" *ngIf="email.errors?.required">email is required</small>
+                  </div>
+                  </div>
+        
+                  <div class="form-group">
+                    <label>Mobile</label>
+                    <input class="form-control" [class.invalid]="mobile.invalid && mobile.touched" type="text" formControlName="mobile" placeholder="Your Name">
+                    <small class="form-text text-danger" *ngIf="mobile.invalid && mobile.touched">User Name is required</small>
+                  </div>
+                  <div class="form-group">
+                    <button  class="button button1 " [disabled]="updateAccount.invalid"   value="Submit">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!--================Blog Area =================-->

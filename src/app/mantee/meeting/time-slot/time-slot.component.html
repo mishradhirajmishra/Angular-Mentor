@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12"> 
+    <br>   
+<h2 class="text-color">Time Slot</h2>
+<!-- <br> {{allMeeting |json}} -->
+ <h6 class="bold">Add / Remove time slot ( Double tap to remove )</h6>
+       <span *ngFor="let meeting of allMeeting">
+      <div  *ngIf="meeting.status==0"  class="btn-group btn-group-ch" (dblclick)="delete(meeting.id)">
+        <button type="button" class="btn btn-primary1 bin-ch-d">{{meeting.start_time | date:'LLL dd'}}</button>
+        <button type="button" class="btn white btn-primary bin-ch-d">{{meeting.start_time | date:'hh:mm a'}} - {{meeting.end_time | date:'hh:mm a'}}</button>
+      </div>  
+      <div  *ngIf="meeting.status==1"  class="btn-group btn-group-ch" >
+          <button type="button" class="btn  bin-ch-c">{{meeting.start_time | date:'LLL dd'}}</button>
+          <button type="button" class="btn white  bin-ch-c">{{meeting.start_time | date:'hh:mm a'}} - {{meeting.end_time | date:'hh:mm a'}}</button>
+        </div>
+    </span> 
+ 
+
+ <br>
+ <img [class.hide]="hide" (click)="showInput()" class="img" src="/assets/img/goods/add-btn.png" > 
+
+ <div [class.hide]="!hide" class="example-wrapper">
+      <input  class="form-control1" placeholder="Select Date & Time"
+             [min]="min"   [style.width]="'254px'"
+             [(ngModel)]="dateTimeRange"
+             [selectMode]="'range'"
+             [owlDateTimeTrigger]="dtRange1" [owlDateTime]="dtRange1">
+      <owl-date-time #dtRange1></owl-date-time>
+      <button  (click)="addDate()" class="btn btn-primary bt-ok" type="button">ok</button>
+    <small *ngIf="msg" class="form-text text-red">{{msg}}</small>
+ 
+</div>
+ <br>   
+ 
+</div>
+<!-- ================================================================= -->
+
+<!-- ======================================================================== -->
+
+</div>

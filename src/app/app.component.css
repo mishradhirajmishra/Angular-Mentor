@@ -1,0 +1,16 @@
+@media only screen and (min-width: 992px){
+.scroll {
+    overflow-y: scroll;
+    height: 100%;
+    width: 25%;
+    position: fixed;
+    z-index: 100;
+}
+
+}
+span.menu-hide {
+    font-size: 20px;
+    font-weight: bold;
+    left: 15px;
+    position: fixed;
+}

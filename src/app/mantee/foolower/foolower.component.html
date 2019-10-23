@@ -1,0 +1,53 @@
+<div class="blog_left_sidebar">
+
+  <article class="blog_item text-center">
+      <div class="blog_details">
+    
+      <h1  class="text-color "> My Follower </h1>
+
+      <div class="searchbar">
+
+        <input class="search_input form-control1" type="text" name="" [(ngModel)]="userFilter.username"
+          placeholder="Type username ...">
+        <!-- <a  class="search_icon button-s"><i class="fas fa-search"></i></a> -->
+      </div>
+
+    <div class="form white-background">
+      <div class="container-fluid cont-padd">
+        <br>
+        <!--============================== add post ============================-->
+        <div class="row">
+
+          <div class=" col-md-3" *ngFor="let profile1 of allProfile | filterBy: userFilter ;let i=index">
+             <div class="white-background" *ngIf="i<totalList">
+            <div class="thumb-content">
+                <div class="img-box">
+                    <img src="{{profile1.profile_img}}" class="img-responsive img-fluid img-circle" alt="">
+                   </div>
+              <p class="mb-0">@{{profile1.username}}</p>
+              <h4>{{profile1.name}}</h4>
+              <p class="item-price">{{profile1.bio}} ...</p>
+              <div class="star-rating">
+              </div>
+              <h6 class="text-red">{{profile1.role}}</h6>
+              <a (click)="profileDetail(profile1.unique_key)" class="button btn-ch">View Profile</a>
+              <a *ngIf="!profile1.follow" (click)="follow(profile1.unique_key)" class="button btn-ch white">Follow</a>
+              <a *ngIf="profile1.follow" class="button btn-ch white">Following</a>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button  *ngIf="profileLength > totalList" class="button btn-more"(click)="more()">More..</button>
+          </div>
+        </div>    
+
+
+        <!-- <app-list-post></app-list-post> -->
+      </div>
+    </div>
+      </div>
+  </article>
+
+</div>

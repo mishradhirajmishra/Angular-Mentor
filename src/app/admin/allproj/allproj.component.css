@@ -1,0 +1,96 @@
+button.btn-edit {
+    padding: 0px 20px;
+    border-radius: 50px;
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+}
+button.btn-add {
+    margin-top: 4px;
+    padding: 0px 20px;
+    border-radius: 50px;
+    background-color: #1F3291;
+    border: 1px solid #1F3291;
+    color: white;
+}
+button.button {
+    font-size: 12px;
+    padding: 0px 20px;
+}
+td {
+    color: black;
+    /* width: 1%; */
+}
+td.input {
+    width: 75% !important;
+}
+td.ind {
+    width: .1%;
+}
+.text-center{
+    text-align: center;
+}
+tbody{
+    display:block;
+    overflow:auto;
+    height:400px;
+    width:100%;
+  }
+  thead{display: block}
+  input.form-control1 {
+    border-radius: 20px;
+   width: 300px !important;
+   height: calc(2.25rem + 2px);
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   line-height: 1.5;
+   color: #495057;
+   background-color: #fff;
+   background-clip: padding-box;
+   border: 1px solid #ced4da;
+   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+button.btn-add.white {
+    background-color: white;
+    color:#1F3291 ;
+}
+button.btn-edit {
+    float: right;
+}
+img.profile {
+    width: 50px;
+    border-radius: 50%;
+}
+ul.dropdown-menu.show {
+    margin: 0px;
+    padding: 0px;
+    text-align: right;
+}
+li.drop {
+    text-align: right;
+    background-image: linear-gradient(to right,transparent ,transparent,transparent ,rgb(203, 209, 239),transparent , rgb(179, 188, 231));    color: #1F3291 ;
+    font-size: 14px;
+    padding-right: 30px;
+    cursor: pointer;
+}
+ul.dropdown-menu.show {
+    background-color: transparent;
+    border: none;
+}
+button.btn.btn-primary {
+    background-color: #1F3291;
+}
+button.btn.btn-secondary {
+    background-color: red;
+}
+.approved{background-color: green;     color: white;
+    padding: 3px 10px;
+    border-radius: 6px;}
+.pending{background-color: yellow;
+    color: red;
+    padding: 3px 10px;
+    border-radius: 6px;}
+.rejected{background-color: red;    color: white;
+    padding: 3px 10px;
+    border-radius: 6px;}
+    .td-width{width: 150px !important}

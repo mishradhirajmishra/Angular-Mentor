@@ -1,0 +1,398 @@
+<div class="blog_left_sidebar">
+  <article class="blog_item">
+    <div class="blog_details">
+
+      <!--============================== add post ============================-->
+      <app-search-bar></app-search-bar>
+      <!--============================== add post ============================-->
+      <h1 class="text-color text-center txt-b">Profile</h1> <br>
+      <div *ngIf="msg">
+
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button> 
+          {{msg}}
+        </div>
+      </div>
+      <!-- =========================profile daetail ========================================== -->
+      <!-- {{profileData |json}} -->
+      <div class="form white-background">
+        <div class="row">
+          <div class="col-md-12">
+            <div class=" col-md-6 offset-md-3 text-center">
+              <img class="img-pro" src="{{profileImage}}" alt="">
+              <br>
+              <h2 class="text-color">{{profileData?.name }}
+                <span class="status" *ngIf="loginStatusVar=='1'"><i class="fa fa-circle" aria-hidden="true"></i></span>
+              </h2>
+              <p class="mb">{{profileData?.type }}</p>
+              <p class="mb text-red mb-1 cusr-point" (click)="listFolower()">{{allfollowMsg}} Follower <span
+                  *ngIf="allfollowMsg !=1 && allfollowMsg !=0">s</span></p>
+              <div *ngIf="user_key!=proid">
+                <p class="mb" *ngIf="isFllowMsg"> <button class="button btn-ch-1 curs white"
+                    type="button">Following</button>
+                  <button class="button btn-ch-1  white" (click)="message()" type="button">Message</button></p>
+                <p class="mb" *ngIf="!isFllowMsg"> <button class="button btn-ch-1  white" (click)="follow()"
+                    type="button">{{followtxt}}</button>
+                  <button class="button btn-ch-1  white" (click)="message()" type="button">Message</button></p>
+                <p class="mb">
+                  <button class="button btn-ch-wh" (click)="meeetingRequest()" type="button">Request a Meeting</button>
+                </p> <br>
+              </div>
+              <div *ngIf="user_key==proid">
+                <p class="mb">
+                  <button class="button btn-ch-wh white" (click)="manageProfile()" type="button">Manage Profile</button>
+                </p>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-color txt-b"> Bio </h4>
+              <p class="justify bioch mb">
+                {{profileData?.bio}}
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ======================    MANTEE POST ================================== -->
+      <div *ngIf="!!allPost">
+        <br> <br>
+        <h4 class="text-color txt-b"> Posts this week </h4>
+        <div class="mb-5" *ngFor="let post of allPost; let last = last; let i= index">
+          <div class="row" *ngIf="i <= postCountInc">
+            <div class="col-xl-2 col-md-3">
+              <div class="thumb-wrapper1">
+                <div class="img-box">
+                  <!-- <p>{{i}}</p> -->
+                  <img src="{{post.image}}" class="img-responsive img-fluid img-circle imgch" alt=""> </div>
+                <div class="thumb-content">
+                  <h6 class="username">@{{post.username}}</h6>
+                  <h6 class="name-co">{{post.name}}</h6>
+                  <a class="button btn-ch-fo" *ngIf="!isFllowMsg" (click)="follow()">{{followtxt}}</a>
+                  <a class="button btn-ch-fo" *ngIf="isFllowMsg">Following</a>
+                  <a class="button btn-ch-fo bg-red" *ngIf="post.user_key==user_key"
+                    (click)="deletePost(post.id,post.user_key,i)">Delete</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-10 col-md-9">
+              <p class="cal"> <i class="fa fa-calendar" aria-hidden="true"></i> {{post.date | date :'longDate'}}</p>
+              <div class="white-bg">
+                <div class="white-bg-inner">
+
+                  <div *ngIf="post.video" class="tex-center">
+                    <iframe [src]="geturl(post.video)" allowfullscreen></iframe>
+                  </div>
+                </div>
+                <div class="white-bg-inner">
+                  <div class="tex-center">
+                    <div class="card-deck-img" *ngIf="post.photo1">
+                      <div class="row">
+                        <div class="col-md-3 col-sm-6 img-col-ch" *ngIf="post.photo1">
+                          <a href="{{post.photo1}}" data-lightbox="roadtrip"><img class="img-tile img-left img-list"
+                              [src]="post.photo1"></a>
+                        </div>
+                        <div class="col-md-3 col-sm-6 img-col-ch" *ngIf="post.photo2">
+                          <a href="{{post.photo2}}" data-lightbox="roadtrip"><img class="img-tile img-right img-list"
+                              [src]="post.photo2"></a>
+                        </div>
+                        <div class="col-md-3 col-sm-6 img-col-ch" *ngIf="post.photo3">
+                          <a *ngIf="post.photo3" href="{{post.photo3}}" data-lightbox="roadtrip"><img
+                              class="img-tile img-left img-list" [src]="post.photo3"></a>
+                        </div>
+                        <div class="col-md-3 col-sm-6 img-col-ch" *ngIf="post.photo4">
+                          <a *ngIf="post.photo4" href="{{post.photo4}}" data-lightbox="roadtrip"><img
+                              class="img-tile img-right img-list" [src]="post.photo4"></a>
+                        </div>
+                      </div>
+                      <!--  -->
+                    </div>
+                  </div>
+                </div>
+                <div class="white-bg-inner">
+                  <div *ngIf="post.description" class="tex-center">
+                    <p class="description">{{post.description}}</p>
+                  </div>
+                  <div class="tex-right" *ngIf="post.category">
+                    <div class="tex-right" *ngIf="post.category">
+
+                      <span *ngFor="let cat of post.category" class="cat">{{cat}}</span>
+                    </div>
+
+                  </div>
+                  <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$44444444 -->
+                  <div class="white-bg-inner tex-right">
+                    <div class="comment-new" (click)="showComment(post.post_key,i)"><i class="far fa-comment">
+                      </i> {{post.comment}} Comment</div>
+                    <div *ngIf="!post.like_status" class="comment-new cusr-point" (click)="addLike(post.post_key,i)"><i
+                        class="far fa-heart" aria-hidden="true"></i> {{post.like}}</div>
+
+                    <div *ngIf="post.like_status" class="comment-new"><i class="fa fa-heart" aria-hidden="true"></i>
+                      {{post.like}}
+                    </div>
+                  </div>
+                  <!-- $$$$$$$$$$$$$$$$$$$$$$$$$$$44444444 -->
+
+                  <div class="comment">
+                    <div class="media">
+                      <img class="align-self-start img-comment" [src]="user_image" alt="">
+                      <div class="media-body">
+                        <div class="input-group ">
+                            <input type="text"  name="comment" [(ngModel)]="post.comment_write" class="form-control" placeholder="Post Comment..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                               <button (click)="addComment(post.post_key,post.user_key,i)" [disabled]="post.comment_write==''" type="submit"
+                              class="input-group-text color-white" id="basic-addon2">Add</button>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- =========================== -->
+              <div class="comment2" *ngFor="let comm of post.all_comment;let ci = index">
+
+                <div *ngIf="post.comment_limit>=ci">
+                  <!-- ===============================comment==================================== -->
+
+                  <div class="row mt-5">
+                    <div class="col-le">
+                      <div class="thumb-wrapper1">
+                          <div class="img-box">
+                              <img src="{{comm.image}}" class="img-responsive img-fluid img-circle img-comm" alt=""> </div>
+                            <div class="thumb-content">
+                              <h6 class="username">@{{comm.user_name}}</h6>
+                              <h6 class="name-co">{{comm.name}}</h6>
+                              <p class="name-co text-case">{{comm.role}}</p>
+                            </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <p class="cal"> <i class="fa fa-calendar" aria-hidden="true"></i> {{comm.date | date :'longDate'}}
+                      </p>
+                      <div class="white-bg">
+                        <div class="white-bg-inner white-bg-inner-ch ">
+                          {{comm.comment}}
+                        </div>
+                      </div>
+                      <!--  -->
+                      <div class="white-bg-inner white-bg tex-right">
+                        <div class="comment-new cusr-point" (click)="allReplyComment(post.post_key,i,comm.id,ci)"><i
+                            class="far fa-comment"> {{comm.reply_count}}
+                          </i> Reply</div>
+                      </div>
+                      <div class="white-bg-inner white-bg tex-right">
+                        <!-- ========================================= -->
+                        <div class="comment">
+                          <div class="media">
+                            <img class="align-self-start img-comment" [src]="user_image" alt="">
+                            <div class="media-body">
+
+                              <div class="input-group ">
+                                  <input type="text" name="comment" [(ngModel)]="comm.reply_write" class="form-control" placeholder="Reply Comment..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                  <div class="input-group-append">
+                                     <button (click)=" replyComment(post.post_key,i,comm.id,comm.user_key,ci)" [disabled]="comm.reply_write==''" type="submit" type="submit"
+                                    class="input-group-text color-white" id="basic-addon2">Reply</button>
+                                  </div>
+                                </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- -----------------reply ------------------ -->
+                      <div class="white-bg-inner  tex-right" *ngIf="comm.reply_show">
+                        <!-- ========================================= -->
+                        <!-- {{comm.reply|json}} -->
+                        <div class="row mt-1" *ngFor="let commReply of comm.reply">
+                          <div class="col-le2">
+                            <div class="thumb-wrapper1">
+                              <div class="img-box">
+                                <img src="{{commReply.image}}" class="img-responsive img-fluid img-circle img-comm"
+                                  alt="">
+                              </div>
+                              <div class="thumb-content">
+                                <h6 class="username">@{{commReply.username}}</h6>
+                                <h6 class="name-co">{{commReply.name}}</h6>
+                                <p class="name-co text-case">{{commReply.role}}</p>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <p class="cal"> <i class="fa fa-calendar" aria-hidden="true"></i>
+                              {{commReply.date | date :'longDate'}}</p>
+                            <div class="gray-bg">
+                              <div class="white-bg-inner white-bg-inner-ch ">
+                                {{commReply.reply}}
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- ========================================= -->
+                      </div>
+                      <!--  -->
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row" *ngIf="post.show_more">
+                <div class=" col tex-right">
+                  <button *ngIf="(post.comment_limit+1)!=post.comment" class="button btn-more-comm"
+                    (click)="moreComment(post.post_key,i)">More Comment..</button>
+                </div>
+              </div>
+              <!-- ============================ -->
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 tex-center" *ngIf="postCount != postCountInc + 1">
+            <button class="button btn-more" (click)="chk()" type="button"> More posts</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================================== -->
+      <!-- ====================   APPROVED PROJECT LISTING   ====================== -->
+      <div class="row mt-5" *ngIf="allProjects">
+        <div class="col-md-12">
+          <!-- {{allProjects |json}} -->
+          <h4 class="text-color txt-b"> #PITCHIT PORTFOLIO </h4>
+          <div *ngFor="let project of allProjects;let i=index">
+            <div class="testimonial1" >
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="card1 left">
+                    <h2 class="text-color">{{project.projName}}</h2>
+
+                    <h6 class="blue-desc1">{{project.problum}}</h6>
+                    <div class="row">
+                      <div class="col-md-4 text-center">
+                        <button *ngIf="!project.showForm && !project.requestStatus && !project.permited" class="button button-sm full white" type="button" (click)="viewForm(i)"> request to view</button>
+                        <button *ngIf="project.requestStatus && !project.permited" class="button button-sm full white"  type="button">Requested</button>
+                        <button *ngIf="project.permited" class="button button-sm full white" (click)="viewProject(project.id)" type="button">  view</button>
+                      </div>
+                      <!-- ----------------------------------------------------------------- -->
+             
+                      <textarea id="req-txt" *ngIf="project.showForm" cols="10" class="form-control" name="project.requestData" [(ngModel)]="project.requestData">Write request here ...</textarea>
+                      <button *ngIf="project.showForm" class="button button-sm full"(click)="makeRequest(project.id,project.user_key,i)">Submit</button>
+                      <!-- ---------------------------------------------------------------- -->
+                      <div class="col-md-4 text-center"></div>
+                      <div class="col-md-4 text-center"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3 ">
+
+                  <img class="img-fluid rounded" src="{{project.image}}" alt="">
+                </div>
+              </div>
+            </div>
+            <br><br>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ======================================================================== -->
+      <!-- ======================    INTREST AREA    ============================== -->
+
+      <div class="row" *ngIf="allintrest">
+        <div class="col md-12  mb-5  width100">
+          <div class="testimonial1 mb-5 pb text-center">
+            <br>
+            <h4 class="text-color text-center txt-b">Interest Areas</h4> <br>
+            <span *ngFor="let in of allintrest">
+              <span class="button ml" *ngIf="in.value==true">{{in.name}}</span>
+            </span>
+            <br>
+          </div>
+
+        </div>
+
+      </div>
+            <!-- ======================================================================== -->
+      <!-- ======================    HELP AREA    ============================== -->
+       <div class="row" *ngIf="profileData?.type=='mentor'">
+          <div class="col md-12  mb-5  width100">
+            <div class="testimonial1 mb-5 pb text-center">
+              <br>
+              <h4 class="text-color text-center txt-b">Help Areas</h4> <br>
+              <span *ngFor="let in of allHelpVar">
+                <span class="button ml" *ngIf="in.value==true">{{in.name}}</span>
+              </span>
+              <br>
+            </div>
+  
+          </div>
+  
+        </div>
+      <!-- ========================================================================= -->
+      <div class="col-md-12">
+        <h4 class="text-color txt-b"> Experience </h4>
+        <br>
+        <div class="row">
+          <div class="col-md-12 col-lg-6 mb-20" *ngFor="let expDetail of profileData?.moreExp">
+            <div class="row">
+              <div class="cl-left">
+                <span class="capp"> {{expDetail?.company | firstWord}}</span>
+              </div>
+              <div class="cl-right">
+                <h2>{{expDetail?.company}}</h2>
+                <h4>{{expDetail?.possition}}
+                </h4>
+                <h5> </h5>
+                <h6><i class="fa fa-calendar" aria-hidden="true"></i> {{expDetail?.dateFrom | date: 'longDate'}} --
+                  <small *ngIf="expDetail?.currentlyWorking"> Till Now</small>
+                  <small *ngIf="!expDetail?.currentlyWorking">{{expDetail?.dateTo | date: 'longDate'}}</small>
+                </h6>
+
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+        <br>
+        <hr><br>
+        <!--  -->
+        <h4 class="text-color txt-b"> Education </h4>
+        <br>
+        <div class="row">
+          <div class="col-md-12 col-lg-6 mb-20" *ngFor="let eduDetail of profileData?.moreEdu">
+            <div class="row">
+              <div class="cl-left">
+                <span class="capp"> {{eduDetail?.insitute | firstWord}}</span>
+              </div>
+              <div class="cl-right">
+                <h2>{{eduDetail?.insitute}}</h2>
+                <h4>{{eduDetail?.eofComplete}} </h4>
+                <h5> </h5>
+                <h6><i class="fa fa-calendar" aria-hidden="true"></i> {{eduDetail?.dateFrom | date: 'longDate'}} --
+                  <small *ngIf="eduDetail?.currentlyWorking"> Till Now</small>
+                  <small *ngIf="!eduDetail?.currentlyWorking">{{eduDetail?.dateTo | date: 'longDate'}}</small>
+                </h6>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+        <br>
+        <hr><br>
+        <!--  -->
+
+      </div>
+
+
+
+
+    </div>
+
+    <!-- ============================================ -->
+  </article>
+
+</div>

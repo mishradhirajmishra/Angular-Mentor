@@ -1,0 +1,123 @@
+
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    float:right;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {display:none;}
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }  
+
+  input.primary:checked + .slider {
+    background-color: #1F3291;
+    
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  /* ==================================== */
+  
+button.button.button1 {
+    width: 100%;
+}
+section.blog_area.section-margin-large {
+    background-color: #f7f2f2;
+}
+.form-control{
+
+border-radius: 5px; }
+.form-group {
+    margin-top: 20px !important;
+}
+.white {
+    background-color: white;
+    color: #1F3291;
+    border: 1px solid #1F3291;
+}
+a.button.redbtn {
+    background-color: red;
+    border-color: red;
+    color: white !important;
+    width: 100%;
+    text-align: center;
+}
+a.button{    width: 100%;
+    text-align: center;}
+img.img-fluid.profile {
+    border-radius: 50%;
+    
+}
+aside.single_sidebar_widget.post_category_widget {
+    background-color: transparent;
+}
+.small1{font-size: 14px; font-weight: 100;}
+li.list-group-item {
+  
+    color: #1F3291;
+}
+h6.change-help {
+  text-align: center;
+  background-color: #1F3291;
+  color: white;
+  border-top-right-radius: 29px;
+  /* padding: 0px 16px; */
+  border-bottom-left-radius: 20px;
+  margin-bottom: 1px;
+  width: 71%;
+}
+
+.border1 {
+    border: 1px solid #1F3291!important;
+    border-radius: 22px;
+    padding: 7px;
+    color: #1F3291;
+    
+    margin-bottom: 20px;
+
+}
+span.m-top {
+  /* background-color: red; */
+  margin-left: 9px;
+}
+label{margin-bottom: 0px!important;}

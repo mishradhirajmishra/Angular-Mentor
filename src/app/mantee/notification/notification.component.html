@@ -1,0 +1,15 @@
+
+ <div *ngIf="!!allNotification">
+
+    <div class="alert alert-success alert-dismissible fade in" *ngFor="let note of allNotification">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+     
+     <img  alt="" class="img" [src]="note.image">{{note.name}}  {{note.message}}
+     <span class="date2">{{note.date | date:'LLL dd'}} </span>
+     <span class="date">{{note.date | date:'hh:mm a'}} </span>
+     <button class="delete btn btn-danger "(click)="delete(note.id)">Delete</button>
+     <button *ngIf="!!note.link" class="delete btn button "(click)="go(note.link)">Go</button>
+
+    </div>
+  </div>
+<!-- {{allNotification |json}} -->

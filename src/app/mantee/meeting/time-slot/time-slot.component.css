@@ -1,0 +1,86 @@
+
+button.button.button1.btn-pad-meet {
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    padding: 6px 0px;
+}
+.container.cont-padd {
+    padding: 0px 50px;
+}
+.white{
+    background-color: white;
+    color: #1F3291;
+    border: 1px solid #1F3291;
+}
+.bt-ok{
+    background-color: #1F3291;
+    margin-left: 5px; 
+}
+img.img-fluid-right {
+    float: right;
+}
+.text-color {
+    color: #1F3291;
+    font-weight: bold;
+}
+h6.bold {
+    font-weight: bold;
+}
+button.btn.time-btn {
+    margin-right: 10px;
+  
+}
+button.btn.time-btn.white-tm-btn {
+    background-color: white;
+    border: 1px solid  #1F3291;
+    color:  #1F3291;
+}
+.add-btn {
+    border-radius: 50%;
+    background-color:#1F3291;
+    color: white;
+    font-size: 38px; 
+}
+.btn-primary1{
+    background-color:#1F3291;
+    color: white;
+}
+img.img {
+    width: 34px;
+}
+/* =========================== */
+button.button.btn-ch {
+    font-size: 16px;
+    margin-left: 10px;
+    padding: 5px 19px;
+}
+.hide{display: none;}
+input.form-control.width1 {
+    width: 220px;
+    display: inline;
+}
+.form-control1 {
+    /* display: block; */
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-group-ch{
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+.gary{background-color: gray !important;}
+.bin-ch-d{font-size: 16px !important;}
+button.btn.white.bin-ch-c {
+    border: 1px solid lightgray;
+    cursor: default;
+}

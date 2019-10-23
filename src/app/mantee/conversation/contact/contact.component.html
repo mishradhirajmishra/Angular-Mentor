@@ -1,0 +1,58 @@
+
+
+            <!-- ----------------------------- -->
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+
+
+                <div id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar">
+
+                  <div class="popup-head">
+                    <!-- <input class="form-control" type="text" [(ngModel)]="userFilter.name" placeholder="name"> <i class="fas fa-search"></i> 
+                           -->
+                    <div class="d-flex  h-100">
+                      <i class="fa fa-address-book" aria-hidden="true"></i>
+                      <div class="searchbar">
+
+                        <input class="search_input" type="text" name="" [(ngModel)]="userFilter.name"
+                          placeholder="Search...">
+                        <a  class="search_icon"><i class="fas fa-search"></i></a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="chat" class="chat_box_wrapper chat_box_small chat_box_active"
+                    style="opacity: 1; display: block; transform: translateX(0px);">
+                    <div class="chat_box touchscroll chat_box_colors_a">
+                      <!-- ----------- -->
+                      <li class="pointer" *ngFor="let list of contactList | filterBy: userFilter"
+                        (click)="gotoChat(list.user_key,list.admin_key)">
+                    
+                        <div class="row">
+                          <div class="c-left">
+                            <img class="img-thumbnail img-contact" [src]="list.image">
+                          </div>
+                          <div class="col">
+                           
+                            <span class="card-title-1">{{list.name}}  &nbsp; &nbsp; &nbsp;<small class="unread" *ngIf="list.unread_msg"> {{list.unread_msg}}</small></span>
+                            <span class="right-role">{{list.role}}</span>                              
+                              <br>
+                            <span class="card-text-1">@{{list.user_name}}</span>
+
+                            <span *ngIf="list.login_status=='1'" class="right-online">
+                                <i class="fa fa-circle" aria-hidden="true"></i></span>
+                                <span *ngIf="list.login_status=='0'" class="right-online">Last Seen : {{list.last_login | date:'LLL dd hh:mm a'}}</span>
+                          </div>
+                        </div>
+                        <!-- {{list.room}} -->
+                        <hr>
+                      </li>
+                      <!-- -------------------------------------- -->
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+            <!-- ------------------------- -->

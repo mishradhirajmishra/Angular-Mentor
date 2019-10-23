@@ -1,0 +1,85 @@
+.button{width: 90%; padding: 15px 0px; font-size: 20px;}
+span.sup{
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0px 9px;
+    position: relative;
+    top: 0px;
+    font-size: 19px;
+    left: 27px;
+}
+
+@media only screen and (max-width: 991px) {
+    .left-mar{
+        /* margin-left: 30px; */
+    }
+  }
+
+/* ====================================== */
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+p.text-center {
+    width: 60%;
+    margin: 0px auto;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+label.button.button.white {
+    background-color: white;
+    color: #1F3291;
+}
+.but-sm {
+    padding: 2px 30px;
+    width: auto;
+}
+img.img-fluid.profile {
+	border-radius: 50%;
+	width: 80%;
+}
+small.small1 {
+    cursor: pointer;
+    font-size: 16px;
+}
+small.small1 {
+
+    border-radius: 15px;
+    padding: 0px 10px;
+    color: #1F3291;
+    border: 1px solid #1F3291;
+}
+a.button.white-bg {
+    background-color: white;
+    color: #1F3291 !important;
+}
+.img-fluid1 {
+    max-width: 100px;
+    height: auto;
+}
+img.img-fluid1.profile {
+    border-radius: 50%;
+}
+a.button.redbtn {
+    background-color: red;
+    border: 1px solid red;
+}
+.blog_right_sidebar .post_category_widget .cat-list li + li {
+    padding-top: 0px !important;
+}
+span.menu-hide {
+    font-size: 20px;
+    font-weight: bold;
+    left: 15px;
+    position: fixed;
+    z-index: 1000;
+    cursor: pointer;
+}

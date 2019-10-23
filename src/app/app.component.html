@@ -1,0 +1,34 @@
+<div
+  *ngIf="router.url =='/' ||router.url =='/babastart' ||router.url =='/babainc' ||router.url =='/profile' ||router.url =='/pitchit' ||router.url =='/register' || router.url =='/contact' || router.url =='/babavaluator' || router.url =='/events' || router.url =='/news' || router.url =='/about' || router.url =='/login' || router.url =='/mentor/register' || router.url =='/mentee/register' ; else dashboard">
+  <app-header></app-header> 
+  <app-home *ngIf="router.url =='/'"></app-home>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>
+
+<ng-template #dashboard>
+  <!-- ============= LOADING DASHBOARD ITEM ============= -->
+  <section class="blog_area section-margin">
+    <div class="">
+      <div class="row">
+        <div class="col-lg-3">
+                    <!-- ============================================= -->
+                    <!-- <span class="menu-hide" (click)="sidebar()"><i class="fas fa-bars"></i></span> -->
+                    <!-- ============================================== -->
+          <div id="scroll-div" class="scroll">
+          <div class="blog_right_sidebar">
+            <app-sidebar *ngIf="userType!='admin'"></app-sidebar>
+            <app-admin-sidebar *ngIf="userType=='admin'"></app-admin-sidebar>
+          </div>
+          </div>
+        </div>
+        <div class="col-lg-9 mb-5 mb-lg-0">
+
+          <router-outlet></router-outlet>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ================================================== -->
+</ng-template>

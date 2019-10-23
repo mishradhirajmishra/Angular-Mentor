@@ -1,0 +1,63 @@
+     
+                    <!-- ============================================= -->
+                    <span *ngIf="mobileview" class="menu-hide" (click)="sidebar()"><i class="fas fa-bars"></i></span>
+                    <!-- ============================================== -->
+                    <br>
+<aside class="single_sidebar_widget post_category_widget" *ngIf="showsidebar">
+
+  <ul class="list cat-list">
+    <li class="text-center">
+      <a class="button" (click)="dashboard()" [class.white-bg]="router.url=='/admin/dasboard'">Dashboard</a>
+    </li>
+    <li class="text-center">
+      <a class="button" (click)="analytics()" [class.white-bg]="router.url=='/admin/analytics'">Analytics</a>
+    </li>
+    <li class="text-center">
+      <a class="button" (click)="intrestArea()" [class.white-bg]="router.url=='/admin/intrestarea'">Interest Area</a>
+    </li>
+    <li class="text-center">
+      <a class="button" (click)="startupArea()" [class.white-bg]="router.url=='/admin/startuparea'">Startup Area</a>
+    </li>
+    <li class="text-center">
+      <a class="button" (click)="experiance()" [class.white-bg]="router.url=='/admin/experience'">Experience</a>
+    </li>
+    <li class="text-center">
+      <a class="button" (click)="education()" [class.white-bg]="router.url=='/admin/education'">Education</a>
+    </li>
+    <li class="text-center">
+      <a class="button" (click)="focus()" [class.white-bg]="router.url=='/admin/project-focus'">Project Focus</a>
+    </li>
+    <li class="text-center">
+      <a class="button" (click)="alluser()" [class.white-bg]="router.url=='/admin/alluser'">All User</a>
+    </li>
+    <li class="text-center">
+      <a class="button" (click)="allproj()" [class.white-bg]="router.url=='/admin/allproject'">All Project</a>
+    </li>
+    <li class="text-center">
+      <a class="button" (click)="helpArea()" [class.white-bg]="router.url=='/admin/helparea'">Mentoring Need</a>
+    </li>
+    <li class="text-center">
+      <a class="button" (click)="subhelpArea()" [class.white-bg]="router.url=='/admin/subhelparea'">Sub-category</a>
+    </li>
+    <li class="text-center">
+        <a class="button" (click)="meetings()" [class.white-bg]="router.url=='/admin/meeting'">Meetings</a>
+      </li>
+      <!-- <li class="text-center">
+          <a class="button" (click)="posts()" [class.white-bg]="router.url=='/admin/posts'">post</a>
+        </li> -->
+    <li class="text-center">
+      <a class="button" (click)="account()" [class.white-bg]="router.url=='/admin/account'">Account</a>
+    </li>
+    <li class="text-center">
+        <a class="button" (click)="subscriber()" [class.white-bg]="router.url=='/admin/subscriber'">Subscribser</a>
+      </li>
+      
+      <li class="text-center">
+          <a class="button" (click)="babastart()" [class.white-bg]="router.url=='/admin/contact'">Contact</a>
+        </li>
+
+    <li class="text-center">
+      <a class="button redbtn" (click)="logout()">Logout</a>
+    </li>
+  </ul>
+</aside>

@@ -1,0 +1,61 @@
+
+  
+<!--================Blog Area =================-->
+<section class="blog_area section-margin">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-12  mb-5 mb-lg-0">
+          <div class="blog_left_sidebar">
+            <article class="">
+                    <div class="">
+                <div class="text-center" >
+                    <h1 class="text-color ">All Project</h1>
+                  <div class="searchbar">
+
+                      <input class="search_input form-control1" type="text" name="" [(ngModel)]="nameFilter.projName"
+                        placeholder="Search...">                        
+                    </div>
+                  <br>        
+                </div>
+                <div class="form white-background">
+                    <table class="table text-danger table-responsive">
+                    <tbody>                   
+                      <tr *ngFor="let intrest of allUser | filterBy: nameFilter; let i=index">
+                      <td class="ind">{{i+1}}</td> 
+                      <td><img class="profile" [src]="intrest.image"></td> 
+                        <td>{{intrest.projName}}</td> 
+                        <td *ngIf="intrest.status=='approved'"><span class="approved">{{intrest.status}}</span></td>
+                        <td *ngIf="intrest.status=='rejected'"><span class="rejected">{{intrest.status}}</span></td>
+                        <td *ngIf="intrest.status=='pending'"><span class="pending">{{intrest.status}}</span></td>
+                     <td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" (click)="projapprove(intrest.proj_id)">Approve</button>
+                                <button type="button" class="btn btn-secondary" (click)="projreject(intrest.proj_id)" >Reject</button>
+                            </div>
+                        </td> 
+                        <td><button *ngIf="intrest.babastart" class="button" (click)="babaStart(intrest.id)">BabaStart</button></td>
+                       <td class="td-width">
+                       <button data-toggle="dropdown" class=" btn-edit dropdown-toggle "> View</button>
+                      <ul class="dropdown-menu">
+                        <li class="drop" (click)="view(intrest.id)">Detail</li>
+                        <li class="drop" (click)="owner(intrest.user_key)">Owner</li>
+                      </ul>                    
+                    </td>
+                     </tr>
+                    </tbody>
+                   </table>
+          
+                </div>
+              </div>
+            </article>
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  <!--================Blog Area =================-->
+  

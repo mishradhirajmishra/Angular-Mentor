@@ -1,0 +1,98 @@
+<div class="blog_left_sidebar">
+
+  <article class="blog_item">
+
+    <div class="form white-background">
+      <div class="container-fluid cont-padd">
+        <br>
+         <!--============================== add post ============================-->
+           <app-search-bar></app-search-bar>
+        <!--============================== request meeting ============================-->
+          <div class="row my-5">
+          <div *ngIf="submited">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button> 
+              <strong>Success!</strong> {{msg}} 
+            </div>
+          </div>
+           
+          <div class="col-md-9">
+              <h2  class="text-color  f-bold">Request a Meeting with {{profileName}} </h2>
+              <br>
+              <!-- {{userPost.value|json}} -->
+              <!-- {{othProject |json}} -->
+            <form [formGroup]="userPost" (ngSubmit)="requestMeeting()">
+                            
+                <div class="form-group">
+                  <label class="label">For which project do you want to meet ?</label><br>
+                    <input  formControlName="check" name="check" class="radio .form-control"   type="radio" value="myproject"> My project  &nbsp;&nbsp;&nbsp;
+                    <input formControlName="check" name="check" class="radio .form-control" type="radio" value="otherproject"> {{profileName}} project &nbsp;&nbsp;&nbsp;
+                    <input formControlName="check" name="check" class="radio .form-control"  type="radio" value="noproject"> No Project &nbsp;&nbsp;&nbsp;
+             
+                 </div>
+                 <!-- {{myProject |json}} -->
+                 <div class="form-group" *ngIf="userPost.value.check=='myproject'">
+                   <select formControlName="project_key" id="proj" class="form-control form-control-ch">
+                      <option value="" selected disabled>Choose...</option>
+                     <option *ngFor="let proj of myProject;let first = first;" value="{{proj.id}} " >{{proj.name}} </option>
+                   </select>
+                 </div>
+                 <div class="form-group" *ngIf="userPost.value.check=='otherproject'">
+                    <select aria-placeholder="" formControlName="project_key" id="proj" class="form-control form-control-ch">
+                        <option value="" selected disabled>Choose...</option>
+                      <option *ngFor="let proj of otherProject" value="{{proj.id}}">{{proj.name}}</option>
+                    </select>
+                  </div>
+
+        
+              <div class="form-group">
+                <textarea class="form-control" formControlName="meeting_comment" name="meeting_comment" rows="5" placeholder="Reason for meeting">
+                  
+                </textarea>
+              </div>
+                       <!-- ============================= -->
+                 <!-- {{allMeeting |json}} -->
+             
+                 <div class="form-group">
+                    <label class="label">Nearest Time slot ( Your local time ) </label><br>
+                    <span *ngFor="let meeting of allMeeting">    
+                      <span *ngIf="meeting.status=='1'">              
+                        
+                        <label for="{{meeting.id}}" class="date white-gray"><span class="date blue1">{{meeting.start_time | date:'LLL dd'}}</span> {{meeting.start_time | date:'hh:mm a'}} - {{meeting.end_time | date:'hh:mm a'}}  &nbsp;                    </label>
+                     </span>
+                     <span *ngIf="meeting.status=='0'">                 
+                        <input  id="{{meeting.id}}" class="hidden" formControlName="id" name="id" type="radio" value="{{meeting.id}}" checked>
+                        <label for="{{meeting.id}}" class="date white"><span class="date blue">{{meeting.start_time | date:'LLL dd'}}</span> {{meeting.start_time | date:'hh:mm a'}} - {{meeting.end_time | date:'hh:mm a'}}  &nbsp;                    </label>
+                     </span>
+                    </span>   
+                   </div>
+                 <!-- ================================ -->
+                 <div class="form-group">
+                    <label class="label">How do you meet ?</label><br>
+                      <input id="video" class="hidden" formControlName="mode" name="mode" type="radio" value="Video call"> 
+                      <label for="video" class="date white mode"> Video call &nbsp; </label>
+                      <input id="audio" class="hidden"  formControlName="mode" name="mode"  type="radio" value="Audio call"> 
+                      <label for="audio" class="date white mode"> Audio call &nbsp; </label>
+
+     
+                   </div>
+             
+              <div class="form-group">
+                <button class="button-sub button" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-3 col-sm-12 text-center">
+            <img  class="img-fluid1 profile " src="{{profileImage}}" alt="">
+            <h4 class="text-center text-color">{{profileName}} </h4>
+            <button class="button btn-ch-pro"(click)="viewprofile()">View Profile</button>
+          </div>
+        </div>
+      
+         <!--============================== Mentor crousel ============================-->
+
+      </div>
+    </div>
+  </article>
+
+</div>

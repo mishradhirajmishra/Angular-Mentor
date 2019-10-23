@@ -1,0 +1,31 @@
+<div class="blog_left_sidebar">
+  
+  <article class="blog_item">
+  
+    <div class="form white-background">
+      <div class="container cont-padd">
+          <br>   
+                     <!--============================== add post ============================-->
+                     <app-search-bar></app-search-bar>
+                     <!--============================== add post ============================-->
+        
+      <div class="row">
+        <div class="col-md-3 mt-3">
+          <button (click)="timeSlot()" [class.blue-bg]="router.url=='/mentee/meeting/time-slot'" class="button button1 btn-pad-meet white">Manage Time Slot</button>
+        </div>
+        <div class="col-md-3 mt-3">
+          <button (click)="meeting()"  [class.blue-bg]="router.url=='/mentee/meeting/upcoming'" class="button button1 btn-pad-meet white">Upcoming Meetings</button>
+        </div>
+        <div class="col-md-3 mt-3">
+          <button (click)="manage()"  [class.blue-bg]="router.url=='/mentee/meeting/manage'" class="button button1 btn-pad-meet  white">Manage Meeting Requests</button>
+        </div>
+        <div class="col-md-3 mt-3">    
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+
+      </div>
+    </div>
+  </article>
+
+</div>

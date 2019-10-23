@@ -1,0 +1,39 @@
+button.button.button1 {
+    width: 100%;
+    z-index: 1000;
+}
+
+.form-control{
+border: none;
+border-bottom: 1px solid gray;
+border-radius: 0px; padding-left: 0px}
+.form-group {
+    margin-top: 20px !important;
+}
+.curser-pointe{
+    cursor: pointer;
+}
+h5 {
+    text-align: center;
+}
+.white {
+    
+    color: #1F3291;
+    border: 1px solid #1F3291;
+}
+.text-center{text-align: center}
+.form-group.rad-group {
+    background-color: blue;
+    padding: 10px;
+    color: white;
+    border-radius: 8px;
+}
+.invalid{
+    border-bottom: 1px solid red !important;
+}
+input {
+    background-color: transparent;
+}
+button.button.button1.white {
+    background-color: white;
+}

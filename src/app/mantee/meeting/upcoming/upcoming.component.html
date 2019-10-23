@@ -1,0 +1,80 @@
+<div class="row">
+    <div  *ngIf="msg">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>                  
+             {{msg}} !
+        </div>
+    </div>
+   
+  <div class="col-md-12 ">
+ 
+    <h2 *ngIf="!!allMeeting" class="text-color">Upcoming meetings</h2>
+    <br>
+    <div *ngIf="!skypeInstaled" class="alert alert-danger alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong><i class="fa fa-exclamation-circle" aria-hidden="true"></i></strong>Make sure that you have installed skype before calling<a class="button sky" href="https://www.skype.com/en/get-skype/"> Install Skype</a>
+    </div>
+  </div>
+  <div class="col-md-3 center" *ngFor="let meeting of allMeeting">
+      <p class="text-color1">{{meeting.start_time | date:'mediumDate'}}</p>
+    <p class="text-color">{{meeting.start_time | date:'hh:mm a'}} - {{meeting.end_time | date:'hh:mm a'}}</p>
+    <img class="img-fluid circle" src="{{meeting.image}}" alt="">
+    <h3 class="text-color">{{meeting.name}}</h3>
+    <p *ngIf="meeting.status==1" class="text-color">Requseted</p>
+    <p *ngIf="meeting.status==2" class="text-green">Accepted</p>
+  
+    <button class="button button-ch" (click)="profile(meeting.admin_key)" type="button">View profile</button>
+    <button *ngIf="meeting.status==1" class="button button-ch red" (click)="cancelRequest(meeting.id)" type="button">Cancel request</button>
+    <!-- <button *ngIf="meeting.status==2" class="button button-ch green" (click)="conferance(meeting.user_key)" type="button">Conferencing Area</button> -->
+    <div *ngIf="meeting.status==2" class="dropdown">
+      <button class="btn button-ch green btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> <i class="fab fa-skype"></i> Skype
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a [href]="chaturl(meeting.audio)" class="skaip-buttons-cmd-call" data-skaip-buttons="off"><i  class='fas'>&#xf2a0;</i> Call</a></li>
+        <li><a [href]="chaturl(meeting.video)" class="skaip-buttons-cmd-videocall" data-skaip-buttons="off"><i  class='fas'>&#xf03d;</i> Videocall</a></li>
+        <li><a [href]="chaturl(meeting.voicemail)"  class="skaip-buttons-cmd-voicemail" data-skaip-buttons="off"><i class="fa fa-microphone" aria-hidden="true"></i> Voice message</a></li>
+        <li> <a [href]="chaturl(meeting.chat)"  class="skaip-buttons-cmd-chat" data-skaip-buttons="off"><i class="far fa-comment-dots" aria-hidden="true"></i> Chat</a></li>
+        <li> <a [href]="chaturl(meeting.sendfile)"  class="skaip-buttons-cmd-sendfile" data-skaip-buttons="off"><i  class='fas'>&#xf56e;</i> Send file</a></li>
+      </ul>
+  </div>
+  </div>
+
+   <!-- ================================== -->
+
+      <div class="col-md-12 ">
+        <h2 *ngIf="!!rejMeeting" class="text-color">Rejected meetings</h2>
+        <br>
+     
+      </div>
+      <div class="col-md-3 center" *ngFor="let meeting of rejMeeting">
+       <p class="text-color1">{{meeting.start_time | date:'mediumDate'}}</p>
+        <p class="text-color">{{meeting.start_time | date:'hh:mm a'}} - {{meeting.end_time | date:'hh:mm a'}}</p>
+        <img class="img-fluid circle" src="{{meeting.image}}" alt="">
+        <h3 class="text-color">{{meeting.name}}</h3>
+        <p class="text-color text-red">Rejected</p>
+        <button class="button button-ch" (click)="profile(meeting.user_key)" type="button">View profile</button>
+        <!-- ----------------------------- -->
+<button class="button button-ch" type="button"data-toggle="modal" [attr.data-target]="'#myModal'+meeting.id">View Reason</button>   
+<!-- Modal -->
+<div id="myModal{{meeting.id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content"> 
+      <div class="text-right padd"> 
+        <button type="button" class="close" data-dismiss="modal">&times;</button>  
+      </div>  
+      <div class="modal-body">
+        <p>{{meeting.reject_comment}}</p>
+        <button  data-dismiss="modal" class="button button-ch-model red" (click)="delete(meeting.id)" type="button">Delete</button>
+
+      </div>
+       
+    </div>
+
+  </div>
+</div>
+<!-- ----------------------------- -->
+        <button  class="button button-ch red" (click)="delete(meeting.id)" type="button">Delete</button>
+      </div>
+       </div> 

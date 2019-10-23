@@ -1,0 +1,16 @@
+<div class="row  mb-5" *ngIf="usertype !='admin'">
+ 
+    <div class="col-12 text-right">
+        <br>
+        <span class="noti pointer" (click)="notification()">    <i class="fas fa-2x fa-bullhorn"></i><span class="sup">{{message}}</span></span> 
+       <span class="noti pointer" (click)="contactList()">    <i class="far fa-2x fa-comment-dots"></i><span class="sup">{{unReadessage}}</span></span> 
+    </div>
+    <div class="col-md-9">
+        <div class="input-group mb-3">
+            <input type="text" placeholder="Type username..." name="" [(ngModel)]="searchKey" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+               <button (click)="getResult()" type="submit" class="input-group-text color-white" id="basic-addon2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            </div>
+          </div>
+    </div>
+  </div>

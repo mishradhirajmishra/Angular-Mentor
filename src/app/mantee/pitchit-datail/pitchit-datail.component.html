@@ -1,0 +1,133 @@
+<div class="blog_left_sidebar">
+
+    <article class="blog_item">
+      <div class="blog_details">
+             
+        <!--============================== add post ============================-->
+        <app-search-bar></app-search-bar>
+        <!--============================== add post ============================-->
+        <h1 class="text-color text-center">#PITCHIT</h1>
+        <p class="text-center blue-desc">Pitch your project to our Mentors. It is good if you are able to figure
+          out all fields on your own. If not, you can just give the project name, category, problem and solution.
+          If you get shortlisted, some mentors will guide you to complete your pitch ;-)</p>
+  
+        <div class="row">
+          <div class="col-md-12">
+            <button (click)="pitchit()" class="button button1 red full" type="button">Pitch a new idea!</button>
+          </div>
+          <div class="col-md-6">
+            <button class="button button1 full" [class.white]="color" (click)="submited()"
+              type="button">Submitted</button>
+          </div>
+          <div class="col-md-6">
+            <button (click)="draft()" [class.white]="!color" class="button button1 full" type="button">Drafts</button>
+          </div>
+        </div>
+        <br> <br>
+  
+        <!-- ====================================== -->
+        <div *ngFor="let project of allProjects| submited: sub |paginate: { itemsPerPage: 5, currentPage: ppp }">
+          <div class="testimonial1">
+            <div class="row">
+              <div class="col-md-9">
+                <div class="card1 left">
+                  <h2 class="text-color">{{project.projName}}</h2>
+  
+                  <h6 class="blue-desc1">{{project.problum}}</h6>
+                  <div class="row">
+                    <div class="col-md-4 text-center">
+                      <button class="button button-sm full {{project.status}}" type="button">{{project.status}}</button>
+                    </div>
+                    <div *ngIf="project.status=='pending'" class="col-md-4 text-center"><button class="button button-sm full" type="button"  (click)="edit(project.id)">Edit</button></div>
+                    <div *ngIf="project.status=='approved'" class="col-md-4 text-center"><button class="button button-sm full" type="button"  (click)="findMentor()">Find Mentor</button></div>
+                    <div class="col-md-4 text-center"><button class="button button-sm full " type="button"
+                        (click)="projectDetail(project.id)">Detail</button></div>
+                        <div class="col-md-4 text-center" *ngIf="project.status=='approved'" ><button class="button button-sm full white " type="button"
+                          (click)="babastart(project.id)">BabaStart</button></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 ">
+  
+                <img class="img-fluid rounded" src="{{project.image}}" alt="">
+              </div>
+            </div>
+          </div>
+          <br><br>
+        </div>
+        <!-- ====================================== -->
+        <div class="testimonial1">
+          <div class="row">
+            <div class="col-md-12 auto">
+              <div class="card1">
+                <!-- ================================================== -->
+                <!-- =================================================== -->
+                <pagination-controls (pageChange)=" ppp = $event"></pagination-controls>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+        <br><br>
+        <!-- ==================================== -->
+  
+        <!-- <div class="row">
+          <div class="col-md-12">
+            <button class="button button1 red full" type="button">Pitch a new idea!</button>
+            <h2 class="text-center text-color">Other People’s Project You have permission to view</h2>
+          </div>
+        </div>
+        <br><br><br><br>
+        <br> -->
+        <!-- ====================================== -->
+        <!-- <div class="testimonial1">
+          <div class="row">
+            <div class="col-md-9">
+              <div class="card1 left">
+                <h2 class="text-color">Myshop</h2>
+                <h6 class="blue-desc1">Myeshop is building an eMarketplace for differently-abled people.</h6>
+                <div class="row">
+                  <div class="col-md-4 text-center"><button class="button button-sm full red-bg"
+                      type="button">Approved</button></div>
+                  <div class="col-md-4 text-center"><button class="button button-sm full green-bg" type="button">Find
+                      Mentor</button></div>
+                  <div class="col-md-4 text-center"><button class="button button-sm full " type="button">Apply to
+                      BabStart</button></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 ">
+              <img class="img-fluid" src="/assets/img/proj.png" alt="">
+            </div>
+          </div>
+        </div>
+        <br><br> -->
+        <!-- ==================================== -->
+<!--   
+        <div class="testimonial1">
+          <div class="row">
+            <div class="col-md-9">
+              <div class="card1 left">
+                <h2 class="text-color">Myshop</h2>
+                <h6 class="blue-desc1">Myeshop is building an eMarketplace for differently-abled people.</h6>
+                <div class="row">
+                  <div class="col-md-4 text-center"><button class="button button-sm full " type="button">Approved</button>
+                  </div>
+                  <div class="col-md-4 text-center"><button class="button button-sm full" type="button">Find
+                      Mentor</button></div>
+                  <div class="col-md-4 text-center"><button class="button button-sm full " type="button">Apply to
+                      BabStart</button></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 ">
+              <img class="img-fluid" src="/assets/img/proj.png" alt="">
+            </div>
+          </div>
+        </div>
+        <br><br> -->
+        <!-- ==================================== -->
+      </div>
+    </article>
+  
+  </div>

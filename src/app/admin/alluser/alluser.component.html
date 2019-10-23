@@ -1,0 +1,55 @@
+
+  
+<!--================Blog Area =================-->
+<section class="blog_area section-margin">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 mb-5 mb-lg-0">
+          <div class="blog_left_sidebar">
+            <article class="">
+  
+              <div class="">
+                <div class="text-center" >
+                    <h1 class="text-color ">All User</h1>
+                  <div class="searchbar">
+
+                      <input class="search_input form-control1" type="text" name="" [(ngModel)]="nameFilter.username"
+                        placeholder="Search...">                        
+                    </div>
+                  <br>        
+                </div>
+                <div class="form white-background">
+                     <!-- {{allUser |json}} -->
+                   <table class="table text-danger table-responsive">
+                    <tbody>                   
+                      <tr *ngFor="let intrest of allUser | filterBy: nameFilter; let i=index">
+                      <td class="ind">{{i+1}}</td> 
+                      <td><img class="profile" [src]="intrest.image"></td> 
+                      <td>{{intrest.name}}</td> 
+                      <td>@{{intrest.username}}</td> 
+             
+                     <td> 
+                       <button data-toggle="dropdown" class=" btn-edit dropdown-toggle "> View</button>
+                      <ul class="dropdown-menu">
+                        <li class="drop" (click)="view(intrest.unique_key)">Detail</li>
+                        <li class="drop" (click)="projects(intrest.unique_key)">All Project</li>
+                        <li class="drop" (click)="followers(intrest.unique_key)">Followers</li>
+                      </ul>
+                    
+                    </td>
+                     </tr>
+                    </tbody>
+                   </table>
+          
+                </div>
+              </div>
+            </article>
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  <!--================Blog Area =================-->
+  

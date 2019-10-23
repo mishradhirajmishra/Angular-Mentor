@@ -1,0 +1,248 @@
+<div class="blog_left_sidebar">
+  <article class="blog_item">
+    <div class="blog_details">
+      <h1 class="text-color text-center txt-b">Profile</h1> <br>
+      <div *ngIf="model">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button> 
+          <strong>Success!</strong> {{model}}
+        </div>
+      </div>
+
+      <!-- =========================profile daetail ========================================== -->
+      <div class="form white-background" *ngIf="!!profileData && formhide">
+        <div class="row">
+          <div class="col-md-12">
+            <div class=" col-md-6 offset-md-3 text-center">
+              <img class="img-pro" src="{{profileImage}}" alt="">
+              <br>
+              <h2 class="text-color">{{profileData?.name }}</h2>
+              <p class="mb">{{profileData?.type }}</p>
+              <!-- <p class="mb text-red mb-1">{{allfollowMsg}} Follower<span *ngIf="allfollowMsg !=1 && allfollowMsg !=0">s</span></p>
+              <p class="mb"> <button class="button btn-ch-1 white" (click)="editprofile()" type="button">Follow</button>
+                <button class="button btn-ch-1  white" (click)="editprofile()" type="button">Message</button></p> -->
+              <p class="mb">
+                <button class="button btn-ch-wh" (click)="editprofile()" type="button">Edit profile</button></p>
+                <p class="mb">
+                  <button class="button btn-ch-wh white" (click)="publicProfile()" type="button">Public profile </button></p>
+              <br>
+            </div>
+            <div>
+              <h4 class="text-color txt-b"> Bio </h4>
+              <p class="justify bioch mb">
+                {{profileData?.bio}}
+              </p>
+
+            </div>
+          </div>
+          <div class="col-md-12">
+            <h4 class="text-color txt-b"> Experience </h4>
+            <br>
+            <div class="row">
+              <div class="col-md-12 col-lg-6 mb-20" *ngFor="let expDetail of profileData?.moreExp">
+                <div class="row">
+                  <div class="cl-left">
+                    <span class="capp"> {{expDetail?.company | firstWord}}</span>
+                  </div>
+                  <div class="cl-right">
+                    <h2>{{expDetail?.company}}</h2>
+                    <h4>{{expDetail?.possition}} </h4>
+                    <h5> </h5>
+                               <h6><i class="fa fa-calendar" aria-hidden="true"></i> {{expDetail?.dateFrom | date: 'longDate'}} --
+                        <small *ngIf="expDetail?.currentlyWorking"> Till Now</small>
+                        <small *ngIf="!expDetail?.currentlyWorking">{{expDetail?.dateTo | date: 'longDate'}}</small>
+                        </h6>
+
+                  </div>
+                </div>
+                <br>
+              </div>
+            </div>
+            <br>
+            <hr><br>
+            <!--  -->
+            <h4 class="text-color txt-b"> Education </h4>
+            <br>
+            <div class="row">
+              <div class="col-md-12 col-lg-6 mb-20" *ngFor="let eduDetail of profileData?.moreEdu">
+                <div class="row">
+                  <div class="cl-left">
+                    <span class="capp"> {{eduDetail?.insitute | firstWord}}</span>
+                  </div>
+                  <div class="cl-right">
+                    <h2>{{eduDetail?.insitute}}</h2>
+                    <h4>{{eduDetail?.eofComplete}}</h4>
+                    <h5> </h5>
+
+                      <h6><i class="fa fa-calendar" aria-hidden="true"></i> {{eduDetail?.dateFrom | date: 'longDate'}} --
+                        <small *ngIf="eduDetail?.currentlyWorking"> Till Now</small>
+                        <small *ngIf="!eduDetail?.currentlyWorking">{{eduDetail?.dateTo | date: 'longDate'}}</small>
+                        </h6>
+                  </div>
+                </div>
+                <br>
+              </div>
+            </div>
+            <br>
+            <hr><br>
+            <!--  -->
+
+          </div>
+        </div>
+
+
+      </div>
+      <!-- ================================================================================= -->
+      <div class="form white-background" *ngIf="!profileData  || !formhide">
+        <form [formGroup]="userProfile" (ngSubmit)="updateProfile()">
+          <div class="form-group">
+            <label class="text-color" for="username">Name</label>
+            <input id="username" formControlName="name" class="form-control" name="name" type="text"
+              >
+          </div>
+          <div class="form-group">
+            <label class="text-color" for="dob">Date of birth</label>
+            <input id="dob" class="form-control" formControlName="age" name="age" type="date"
+              placeholder="date of birth">
+          </div>
+          <div class="form-group border-bot">
+            <label class="text-color">Sex</label>
+            <br>
+            <input name="sex" formControlName="sex" class="" type="radio" value="male"> Male &nbsp;&nbsp;&nbsp;
+            <input name="sex" formControlName="sex" class="" type="radio" value="female"> Female &nbsp;&nbsp;&nbsp;
+            <input name="sex" formControlName="sex" class="" type="radio" value="other">Other
+          </div>
+          <div class="form-group">
+            <label class="text-color">Bio</label>
+            <textarea name="bio" formControlName="bio" class="form-control" rows="5"></textarea>
+          </div>
+          <!-- ====================EXPERIENCE========================== -->
+          <hr>
+          <h4 class="text-color"> Experience <i class="fa fa-shopping-bag" aria-hidden="true"></i></h4>
+
+
+          <div formArrayName="moreExp" *ngFor="let exp of getMoreExp.controls;let i=index">
+            <!-- ............................................................... -->
+            <ng-container [formGroupName]="i">
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <input class="form-control" name="company" formControlName="company" placeholder="company"
+                    type="text">
+                </div>
+                <div class="form-group col-md-4">
+                  <input class="form-control" name="possition" formControlName="possition" placeholder="position"
+                    type="text">
+                </div>
+                <div class="form-group col-md-4">
+                  <select class="form-control" name="other" formControlName="other">
+                    <option *ngFor="let exp of manteeProfileExplist" value="{{exp.id}}">{{exp.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <div class="row">
+                    <label class="col-sm-3 text-color">From :</label>
+                    <input class="form-control col-sm-8 cont-ch" name="dateFrom" formControlName="dateFrom"
+                      placeholder="dateFrom" type="date">
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="row">
+                    <label class="col-sm-3 text-color">To : </label>
+                    <input class="form-control col-sm-8 cont-ch" name="dateTo" formControlName="dateTo"
+                      placeholder="dateTo" type="date">
+                  </div>
+                </div>
+                <div class="form-group col-md-4 current">
+                  <span class="m-top">Currently working </span>
+                  <label class="switch ">
+                    <input type="checkbox" formControlName="currentlyWorking" class="primary" name="currentlyWorking">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+
+
+
+            </ng-container>
+            <!-- ................................................................ -->
+
+          </div>
+
+
+          <button (click)="addMoreExp()" class="button col-sm-4  btnch" type="button"> <i
+              class="fas fa-plus-circle"></i> Add</button>
+
+          <!-- ====================EDUCATION========================== -->
+          <hr>
+          <h4 class="text-color">Education <i class="fa fa-graduation-cap" aria-hidden="true"></i></h4>
+
+          <div formArrayName="moreEdu" *ngFor="let exp of getMoreEdu.controls;let i=index">
+            <!-- ............................................................... -->
+            <ng-container [formGroupName]="i">
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <input class="form-control" name="insitute" formControlName="insitute" placeholder="insitute"
+                    type="text">
+                </div>
+                <div class="form-group col-md-4">
+                  <input class="form-control" name="eofComplete" formControlName="eofComplete" placeholder="qualification"
+                    type="text">
+                </div>
+                <div class="form-group col-md-4">
+                  <select class="form-control" name="level" formControlName="level">
+                    <option *ngFor="let edu of manteeProfileEdulist" value="{{edu.id}}">{{edu.name}}</option>
+                  </select>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-4">
+                  <div class="row">
+                    <label class="col-sm-3 text-color">From :</label>
+                    <input class="form-control col-sm-8 cont-ch" name="dateFrom" formControlName="dateFrom"
+                      placeholder="dateFrom" type="date">
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                  <div class="row">
+                    <label class="col-sm-3 text-color">To : </label>
+                    <input class="form-control col-sm-8 cont-ch" name="dateTo" formControlName="dateTo"
+                      placeholder="dateTo" type="date">
+                  </div>
+                </div>
+                <div class="form-group col-md-4 current">
+                  <span class="m-top">Currently Studying </span>
+                  <label class="switch ">
+                    <input type="checkbox" formControlName="currentlyWorking" class="primary" name="currentlyWorking">
+                    <span class="slider round"></span>
+                  </label>
+                </div>
+              </div>
+
+
+
+            </ng-container>
+            <!-- ................................................................ -->
+          </div>
+
+          <button (click)="addMoreEdu()" class="button col-sm-4  btnch" type="button"> <i
+              class="fas fa-plus-circle"></i> Add</button>
+
+          <div class="form-group">
+            <button class="button button1" type="Submit">Submit</button>
+          </div>
+        </form>
+
+      </div>
+      <div class="form white-background" #profilePreview>
+
+
+      </div>
+      <!-- ==================================== -->
+    </div>
+    <!-- ============================================ -->
+  </article>
+
+</div>

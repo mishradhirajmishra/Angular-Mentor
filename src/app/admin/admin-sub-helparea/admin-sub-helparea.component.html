@@ -1,0 +1,57 @@
+
+<!--================Blog Area =================-->
+<section class="blog_area section-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 mb-5 mb-lg-0">
+        <div class="blog_left_sidebar">
+          <article class="">
+       
+            <div class="">
+              <div class="text-center" >
+                <h1 class="text-color ">Mentoring Sub-category</h1>
+                <div class="searchbar">
+
+                    <input class="search_input form-control1" type="text" name="" [(ngModel)]="nameFilter.name"
+                      placeholder="Search...">
+                  </div>
+                <br>        
+              </div>
+              <div class="form white-background">
+
+                 <table class="table text-danger table-responsive">
+                    <thead>
+                        <tr><td  class="input">
+                          <input class="form-control" type="hidden" [(ngModel)]="intrestData.id">
+                       <select class="form-control2"  [(ngModel)]="intrestData.help_key">
+                               <option *ngFor="let allHelp of allHelpVar" value="{{allHelp.help_key}}">{{allHelp.name}}</option>
+                          </select>
+                        </td>
+                        <td >
+                          <input (keyup)="nameData()" class="form-control2" type="text" [(ngModel)]="intrestData.name">
+                         </td><td ><button [disabled]="enable" class=" btn-add " (click)="submit()">  {{btnText}}</button>
+                          </td>
+                           <td > <button class=" btn-add white "(click)="reset()">Reset</button>
+                         </td></tr>
+                       </thead>
+                  <tbody>                   
+                    <tr *ngFor="let intrest of allIntrest | filterBy: nameFilter; let i=index">
+                    <td class="ind">{{i+1}}</td> 
+                    <td>{{intrest.help_name}}</td> 
+                    <td>{{intrest.name}}</td> 
+                   <td> <button class=" btn-edit " (click)="edit(intrest)"><i class="fa-pencil" title="Edit"></i> Edit</button></td>
+                   </tr>
+                  </tbody>
+                 </table>
+        
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!--================Blog Area =================-->

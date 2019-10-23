@@ -1,0 +1,54 @@
+
+  
+<!--================Blog Area =================-->
+<section class="blog_area section-margin">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 mb-5 mb-lg-0">
+          <div class="blog_left_sidebar">
+            <article class="">
+  
+              <div class="">
+                <div class="text-center" >
+                    <h1 class="text-color ">Meetings </h1>
+                  <!-- {{meetings |json}} -->
+                </div>
+                <div class="form white-background">
+
+                   <table class="table text-danger table-responsive">
+                     <thead>
+                        <!-- <tr><th>SN</th><th>Admin</th><th>User</th><th>Time</th></tr> -->
+                    </thead>
+                    <tbody>                   
+                        <tr *ngFor="let meeting of meetings;let i=index">
+                            <td>{{i+1}}</td>
+                            <td><img class="img-pro" [src]="meeting.admin_image">
+                            <br>{{meeting.admin_name}}</td>
+                            <td><img class="img-pro" [src]="meeting.user_image">
+                            <br>{{meeting.user_name}}</td>       
+                            <td>             
+                              <div  class="btn-group btn-group-ch" >
+                                <button type="button" class="btn  bin-ch-c">{{meeting.start_time | date:'LLL dd'}}</button>
+                                <button type="button" class="btn white  bin-ch-c">{{meeting.start_time | date:'hh:mm a'}} - {{meeting.end_time | date:'hh:mm a'}}</button>
+                              </div>
+                            </td>
+                            <td>
+                              <span *ngIf="meeting.status_flag==1" class="bladge-yellow">{{meeting.status}}</span>
+                              <span *ngIf="meeting.status_flag==2" class="bladge-green">{{meeting.status}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                   </table>
+          
+                </div>
+              </div>
+            </article>
+  
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  <!--================Blog Area =================-->
+  

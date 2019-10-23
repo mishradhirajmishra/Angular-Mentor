@@ -1,0 +1,23 @@
+button.button.button1 {
+    width: 100%;
+}
+
+.form-control{
+border: none;
+
+border-radius: 20px; padding-left: 10px}
+.form-group {
+  
+}
+.bottom{float: right;    margin-right: 20px;}
+.white {
+
+    color: #1F3291;
+    border: 1px solid #1F3291;
+}
+/* ============================ */
+.invalid{ border-bottom: 1px solid red;}
+
+.d-inline-block {
+    width: 100%;
+}

@@ -1,0 +1,108 @@
+<div class="col-md-8 offset-md-2">   
+  <article class="blog_item">
+    <div class="blog_details">
+      <h1 class="text-color text-center">#PITCHIT</h1>
+      <p class="text-center blue-desc">Pitch your startup idea to our Mentors. It is good if you are able to figure out all the fields on your own. If not, you can just give the project name, category, problem, and solution. If you get shortlisted, some mentors will guide you to complete your pitch ;-)</p>
+       <h2 class="text-center blue-desc">You will be eligible for BabaStart<sup>TM</sup><br> if your idea is shortlisted</h2>
+      <div class="form white-background" *ngIf="notsubmited">
+        <form  [formGroup]="projects" (ngSubmit)="addProjects()">
+          <div class="form-group">
+            <label for="projectarea">Project Name</label>
+            <input  formControlName="projName" name="projName" [class.invalid]="projname.invalid && projname.touched" id="projectarea"  class="form-control" type="text" placeholder="Example Project">
+            <small class="form-text text-danger" *ngIf="projname.invalid && projname.touched">Project Name is required</small>
+
+          </div>
+          <div class="form-group">
+            <label for="project-url">Project Url</label>
+            <input  formControlName="projUrl"  name="projUrl" [class.invalid]="projurl.invalid && projurl.touched" id="project-url" class="form-control" type="url" placeholder="example.com">
+            <small class="form-text text-danger" *ngIf="projurl.invalid && projurl.touched">Invalid Url</small>
+
+          </div>
+          <div class="form-group">
+            <label for="eamil">Email</label>
+            <input  formControlName="email" name="email" [class.invalid]="emailr.invalid && emailr.touched" id="eamil" class="form-control" type="text" name="email" placeholder="Email">
+            <div *ngIf="emailr.invalid && emailr.touched">
+              <small class="form-text text-danger" *ngIf="emailr.errors?.email">email is invalid</small>
+              <small class="form-text text-danger" *ngIf="emailr.errors?.required">email is required</small>
+            </div> 
+          </div>
+
+          <div class="form-group ">
+              <label  value="select">Project Focus Area</label>
+            <select class="form-control w-100 mb-3"  [class.invalid]="projectarea.invalid && projectarea.touched"  formControlName="projectArea" name="projectArea" >
+             
+              <option *ngFor="let foc of focusArea" value="{{foc.id}}">{{foc.name}}</option>
+            </select>
+            <small class="form-text text-danger" *ngIf="projectarea.invalid && projectarea.touched">Project Focus Area is required</small>
+
+          </div>
+          <!-- ------------------------------------------- -->
+          <div class="form-group">
+            <label>Problem Statement</label>
+            <textarea formControlName="problum" name="problum" class="form-control" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Solution</label>
+            <textarea formControlName="solution" name="solution" class="form-control" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Market Opportunity</label>
+            <textarea formControlName="marketOpp" name="marketOpp" class="form-control" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Competitive Landscape</label>
+            <textarea formControlName="competitiveLand" name="competitiveLand" class="form-control" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Go to Market Strategy</label>
+            <textarea formControlName="marketStr" name="marketStr" class="form-control" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Go to Customer Strategy</label>
+            <textarea formControlName="customerStr" name="customerStr" class="form-control" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Financial Model</label>
+            <textarea formControlName="financialMod" name="financialMod" class="form-control" rows="5"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Misc.</label>
+            <textarea formControlName="misc" name="misc" class="form-control" rows="5"></textarea>
+          </div>
+          <div class="form-check">
+            <input  [class.invalid]="terms.invalid && terms.touched"  formControlName="term" name="term" id="agree" class="form-check-input" type="checkbox">
+            <label for="agree" class="form-check-label"><a href="http://about.mentorbaba.co/privacy.html">Agree to our Terms and Privacy Policy</a></label>
+            <br>
+            <small class="form-text text-danger" *ngIf="terms.invalid && terms.touched">This Field is required</small>
+
+          </div>
+         
+          <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+          <div class="form-group">
+            <button [disabled]="!terms.value|| emailr.invalid ||projectarea.invalid || projname.invalid" class="button button1" type="Submit">Submit</button>
+          </div>
+
+        </form>
+        <div class="form-group">
+     
+
+          <button (click)="gotoDashboard()" class="button button1 white" type="button">Skip</button>
+        </div>
+
+      </div>
+      <div class="form white-background" *ngIf="!notsubmited">
+        <div class="row">
+          <div class="col-md-9 auto-mar">
+              <p class="text-center thanks" *ngIf="proid"> Updated Successfully<p>
+
+              <p class="text-center thanks">Thank You for Submitting your project You will hear back from us soon<p>
+                  <button (click)="gotoDashboard()"  class="button button1 bt-padd" type="button">Continue to mentorBaba</button>
+             
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </article>
+
+</div>

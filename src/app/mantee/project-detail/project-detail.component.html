@@ -1,0 +1,119 @@
+<div class="blog_left_sidebar">   
+  <article class="blog_item">
+    <div class="blog_details">
+      <h1 class="text-color text-center">Project Detail</h1>
+        <!-- {{model | json}} -->
+       <div class="form white-background">
+          <div class="row">
+                     <div class="col-md-7">
+                  <h4 class="text-color"> {{model?.projName}} <i class="fa fa-tasks" aria-hidden="true"></i></h4> 
+                  <br>
+                  <div class="row">
+                      <div class="col-sm-3" >
+                          <span class="capp">P</span>
+                      </div>
+                      <div class="col-sm-9" >
+                         <h4><i class="fa fa-envelope" aria-hidden="true"></i> {{model?.email}}</h4>  
+                       <h4 *ngFor="let foc of focusArea | databyid : model?.projectArea"> <i class="fa fa-fighter-jet" aria-hidden="true"></i> {{foc?.name}}</h4 >                          
+                           
+                        <a class="button button-sm " href="{{model?.projUrl}}"> <i class="fa fa-globe" aria-hidden="true"></i> go to project</a>
+                      </div>
+                      <div class="col-sm-12 mt-5" >
+                          <h4 class="text-color"><i class="fa fa-chevron-right" aria-hidden="true"></i> Problem</h4> 
+
+                            <p> {{model?.problum}}</p>
+                      </div>
+                    </div>
+                 
+
+              </div>
+              <div class="col-md-5">
+                  <div class="card">
+                   
+                      <img *ngIf="url" [src]="url" style="width:100%"> 
+                      <img *ngIf="!url" src="{{projImg}}" alt="" style="width:100%">
+                      <br>
+                      <ul *ngIf="usertype !='admin'">
+                      <li><input type="file" id="file" class="inputfile" (change)="onSelectChange($event)"  /><label class="button button white but-sm" for="file">Choose</label>
+                        &nbsp;&nbsp; <button class="button but-sm" (click)="updateProfileImage()">Upload</button>
+                      </li>
+                      <br>
+                    </ul>
+
+                     
+                    </div>
+              </div>
+            </div>
+          </div>   
+          <hr>
+          <!-- ================================================================== -->
+          <div class="row">
+            <div class="col-md-12" *ngIf="model?.solution">
+                <h4 class="text-color"> <i class="fa fa-chevron-right" aria-hidden="true"></i>  Solution</h4> 
+                <p> {{model?.solution}} </p>                         
+
+            </div>
+          </div>     
+          <div class="row">
+              <div class="col-md-12" *ngIf="model?.marketOpp">
+                  <h4 class="text-color"> <i class="fa fa-chevron-right" aria-hidden="true"></i>Market Opportunity</h4> 
+                  <p> {{model?.marketOpp}} </p>                         
+
+              </div>
+            </div> 
+            <div class="row">
+                <div class="col-md-12" *ngIf="model?.competitiveLand">
+                    <h4 class="text-color"> <i class="fa fa-chevron-right" aria-hidden="true"></i>  Competitive Landscape</h4> 
+                    <p> {{model?.competitiveLand}} </p>                         
+
+                </div>
+              </div> 
+              <div class="row">
+                  <div class="col-md-12" *ngIf="model?.marketStr">
+                      <h4 class="text-color"> <i class="fa fa-chevron-right" aria-hidden="true"></i>  Go to Market Strategy </h4> 
+                      <p> {{model?.marketStr}} </p>                         
+
+                  </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-12" *ngIf="model?.customerStr">
+                        <h4 class="text-color"> <i class="fa fa-chevron-right" aria-hidden="true"></i>  Go to Customer Strategy</h4> 
+                        <p> {{model?.customerStr}} </p>                         
+
+                    </div>
+                  </div> 
+                  <div class="row">
+                      <div class="col-md-12" *ngIf="model?.financialMod">
+                          <h4 class="text-color"> <i class="fa fa-chevron-right" aria-hidden="true"></i>Financial Model </h4> 
+                          <p> {{model?.financialMod}} </p>                         
+
+                      </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-12" *ngIf="model?.misc">
+                            <h4 class="text-color"> <i class="fa fa-chevron-right" aria-hidden="true"></i>  misc</h4> 
+                            <p> {{model?.misc}} </p>                         
+  
+                        </div>
+                      </div>
+                      <div class="row" *ngIf="autharised">
+  
+                        <div class="col-md-12">
+                            <h1 class="text-color text-center">View Request</h1>
+                          <table class="table">
+                            <tr *ngFor="let list of proviewlist;let i=index">
+                              <td class="center"><img class="img-pro" [src]="list.image"><br>{{list.name}}</td>
+                              <td>{{list.request}}</td>
+                              <td *ngIf="list.status==0"><button  class="button btn-sm" (click)="allow(list.id,i,list.project_key,list.proj_owner_key,list.req_key)">Allow</button></td>
+                              <td *ngIf="list.status==1"><button class="button btn-sm white" (click)="disallow(list.id,i,list.project_key,list.proj_owner_key,list.req_key)">Allowed</button></td>
+                             </tr>
+                          </table>                        
+                        </div>
+                      </div>  
+                      
+                        
+            <!--=================================================================  -->
+        </div>        
+  </article>
+
+</div>

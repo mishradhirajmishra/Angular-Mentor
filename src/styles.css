@@ -1,0 +1,116 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+/* body {
+    width: 98%!important;
+    margin: 0px auto;
+} */
+.pointer{cursor: pointer;}
+body {
+    overflow: hidden;
+}
+.logo{width: auto;height: 100px;}
+a.button1
+ {
+    width: 100%;
+    text-align: center;
+}
+.aut-margin { margin: 0px auto;}
+.text-red{color: red;}
+a.button.bt-50 {
+    text-align: center;
+    width: 46%;
+    margin: 2%;
+}
+a.button.bt-50.white {
+    background-color: white;
+    color: #1F3291;;
+    border: 1px solid #1F3291;;
+}
+body{
+background-image: linear-gradient(0deg, #f7f2f2, hsla(0, 27%, 98%, .5) 30%, #f7f2f2);
+
+background-size: auto, cover;
+background-attachment: scroll, fixed;
+}
+a.button.btn-red {
+    background-color: red;
+    border: 1px solid red;
+    padding: 5px 100px;
+}
+.margin-top{
+    margin-top: 80px;
+}
+
+.text-color{
+    color: #1F3291;
+}
+.button{background-color: #1F3291;border: 1px solid #1F3291;}
+a.button {
+    color: white !important;
+}
+:disabled {
+    background-color:#1F3291;cursor: not-allowed;
+}
+.blue-desc {
+    font-size: 22px;
+    color:#1F3291;
+}
+.blog_right_sidebar {
+    text-align: center;
+}
+.alert.alert-success {
+    position: fixed;
+    top: 10px;
+    z-index: 1000;
+    right: 10px;
+    border: 1px solid green;
+}
+.button{  cursor: pointer !important
+}
+
+.blog_left_sidebar {
+    /* background-color: #fbf9ff; */
+}
+
+a.navbar-brand.logo_h {
+    padding: 20px 0px;
+}
+ul.nav.navbar-nav.menu_nav.justify-content-end {
+    font-size: 20px;
+}
+a.nav-link {
+    color: #1F3291 !important;
+}
+:disabled {
+    cursor: not-allowed!important;
+   
+  }
+  :disabled:hover{background-color: red;}
+  .blog_right_sidebar {
+    background-color: white;
+}
+.text-right{
+    text-align: right;
+}
+
+@media (max-width: 991px) {
+    h1r {
+font-size: 30px !important;
+}
+}
+.table td, .table th {
+    padding: 3px !important ; 
+    vertical-align: middle!important ; 
+}
+.searchbar {
+    background-color: #1F3291;
+    padding: 2px;
+}
+span.menu-hide {
+
+    cursor: pointer !important;
+}
+button.button.load,button.button.btn-more-comm {
+    padding: 0px 30px!important;
+}
+.btn-more{padding: 0px 35px}

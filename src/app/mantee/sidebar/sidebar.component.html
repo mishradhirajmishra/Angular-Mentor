@@ -1,0 +1,77 @@
+
+                    <!-- ============================================= -->
+                    <span *ngIf="mobileview" class="menu-hide" (click)="sidebar()"><i class="fas fa-bars"></i></span>
+                    <!-- ============================================== -->
+<aside class="single_sidebar_widget post_category_widget"  *ngIf="showsidebar">
+
+       
+    <ul class="list cat-list">
+      <li>
+          
+        <img class="img-fluid1 pointer left-mar" (click)="home();" src="assets/img/sidelogo.png" alt=""></li>
+     
+        <li *ngIf="imageChangedEvent">
+            <!-- ********************************************************************************** -->
+<image-cropper
+[imageChangedEvent]="imageChangedEvent"
+[maintainAspectRatio]="true"
+[aspectRatio]="1 /1"
+[resizeToWidth]="300"
+[resizeToHeight]="300"
+(imageCropped)="imageCropped($event)"
+></image-cropper>
+
+<!-- *********************************************************************************** -->
+        </li>  
+        <li>       
+          <img *ngIf="url" class="img-fluid1 profile pointer" [src]="url" style="width:100%"> 
+      <img *ngIf="!url" (click)="myprofile()" class="img-fluid1 profile pointer " src="{{profileImage}}" alt="">
+      
+       </li>
+      <li>
+        <h4 class="text-center">{{profileName}} <br><small *ngIf="edit" (click)="editfun()" class="small1">Edit</small></h4>
+      </li>
+        
+      <li  *ngIf="!edit"><input type="file" id="file" class="inputfile" (change)="onSelectChange($event)"  /><label class="button button white but-sm" for="file">Choose</label>
+        &nbsp;&nbsp; <button class="button but-sm" (click)="updateProfileImage()">Upload</button>
+      </li>
+    
+      <li>
+        <p class="text-center">{{profileBio}} </p>
+      </li>
+        <li class="text-center" *ngIf="userRole=='mentor'">
+          <a class="button" [class.white-bg]="router.url=='/mentee/mypost'" (click)="helpArea()">HelpArea</a>
+        </li>
+      <li class="text-center">
+        <a class="button" [class.white-bg]="router.url=='/mentee/account'" (click)="account()">Account</a>
+      </li>
+      <li class="text-center">
+          <a class="button" [class.white-bg]="router.url=='/mentee/profile/'+user_key"  (click)="profile()">Profile</a>
+        </li>
+      <li class="text-center">
+        <a class="button" [class.white-bg]="router.url=='/mentee/pitchit-detail'" (click)="pitchit()">#PITCHIT</a>
+      </li>
+      <li class="text-center">
+        <a class="button" [class.white-bg]="router.url=='/mentee/intrestarea'" (click)="intrestArea()">Interest Area</a>
+      </li>
+      <li class="text-center">
+        <a class="button" [class.white-bg]="router.url=='/mentee/conversation/contact-list'" (click)="conversation()">Conversation</a>
+      </li>
+      <li class="text-center">
+        <a class="button" [class.white-bg]="router.url=='/mentee/meeting/time-slot'" (click)="meeting()">Meeting <span *ngIf="meetingCount" class="sup">{{meetingCount}}</span></a>
+      </li>
+      <li class="text-center">
+        <a class="button" [class.white-bg]="router.url=='/mentee/follower/'+user_key" (click)="follower()">Follower</a>
+      </li>
+      <li class="text-center">
+        <a class="button" [class.white-bg]="router.url=='/mentee/all'" (click)="allPeople()">All People</a>
+      </li>
+      <li class="text-center">
+        <a class="button" [class.white-bg]="router.url=='/find-mentor'" (click)="findMentor()">Find A Mentor</a>
+      </li>
+      
+      <li class="text-center">
+        <a class="button redbtn"(click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </aside>

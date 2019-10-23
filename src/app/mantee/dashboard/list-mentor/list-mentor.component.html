@@ -1,0 +1,91 @@
+        <!-- ================================================================================== -->
+        <!-- ---------------------------------FOR DESKTOP------------------------------------ -->
+        <!-- ================================================================================== -->
+        <div class="row" *ngIf="desktopview">
+            <div class="col-md-12">
+              <h2 class="tex-center">Great People to follow</h2>
+              <div class="tex-center">
+                  <button class="button btn-ch btn-all" (click)="viewAll()">View all</button>
+                </div>
+              <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+  
+                <!-- Wrapper for carousel items -->
+                <div class="carousel-inner">
+                  <div *ngFor="let profile of allProfileDesk" class="item carousel-item" [class.active]="activeclass(profile)">  
+                    <div class="row">                     
+                      <div class="col-sm-3 padd-0" *ngFor="let pro of profile">
+                        <div class="thumb-wrapper">
+                          <div class="img-box">
+                            <img src="{{pro.profile_img}}" class="img-mantee img-circle" alt=""> </div>
+                          <div class="thumb-content">
+                            <h6 class="username">@{{pro.username}}</h6>
+                            <h6 class="name">{{pro.name}} <span class="status" *ngIf="pro.login_status=='1'"><i class="fa fa-circle" aria-hidden="true"></i></span></h6>
+                            <p class="item-price">{{pro.bio}} ...</p>
+                            <div class="star-rating">
+                            </div>
+                            <a (click)="profileDetail(pro.user_key)" class="button btn-ch">View Profile</a>
+                            <a *ngIf="!pro.follow" (click)="follow(pro.user_key)" class="button btn-ch white">Follow</a>
+                            <a *ngIf="pro.follow" class="button btn-ch white">Following</a>
+                          </div>
+                        </div>
+                      </div>
+  
+                    </div>
+                  </div>
+                </div>
+                <!-- Carousel controls -->
+                <a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
+                  <i class="fa fa-arrow-left"></i>
+                </a>
+                <a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
+                  <i class="fa fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- ================================================================================== -->
+          <!-- ---------------------------------FOR MOBILE------------------------------------ -->
+          <!-- ================================================================================== -->
+          <div class="row" *ngIf="!desktopview">
+            <div class="col-md-12">
+                <h2 class="tex-center">Great People to follow</h2>
+                <div class="tex-center">
+                    <button class="button btn-ch btn-all" (click)="viewAll()">View all</button>
+                  </div>
+              <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+  
+                <!-- Wrapper for carousel items -->
+                <div class="carousel-inner">
+                  <div *ngFor="let profile1 of allProfile" class="item carousel-item {{profile1.class}}">
+                    <div class="row">
+  
+                      <div class="thumb-wrapper thumb-wrapper1">
+                        <div class="img-box">
+                          <img src="{{profile1.profile_img}}" class="img-responsive img-fluid img-circle" alt=""> </div>
+                        <div class="thumb-content">
+                            <h6 class="username">@{{profile1.username}}</h6>
+                          <h4>{{profile1.username}}</h4>
+                          <p class="item-price">{{profile1.bio}} ...</p>
+                          <div class="star-rating">
+                          </div>
+                          <a (click)="profileDetail(profile1.user_key)" class="button btn-ch">View Profile</a>
+                          <a *ngIf="!profile1.follow" (click)="follow(profile1.user_key)" class="button btn-ch white">Follow</a>
+                          <a *ngIf="profile1.follow" class="button btn-ch white">Following</a>
+                        </div>
+  
+                      </div>
+  
+                    </div>
+                  </div>
+                </div>
+                <!-- Carousel controls -->
+                <a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
+                  <i class="fa fa-arrow-left"></i>
+                </a>
+                <a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
+                  <i class="fa fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>

@@ -1,0 +1,44 @@
+<div class="blog_left_sidebar">  
+  <article class="blog_item">
+    <div class="blog_details">
+     
+        <!--============================== add post ============================-->
+        <app-search-bar></app-search-bar>
+        <!--============================== add post ============================-->
+      <h1 class="text-color text-center">What is your interest area?</h1>
+       <br>
+       <div  *ngIf="submited">
+        <div class="alert alert-success">  
+            <button type="button" class="close" data-dismiss="alert">&times;</button>                
+            <strong>Success!</strong> Updated Successfully !
+        </div>
+       </div>
+      <div class="form white-background">
+        <form #int="ngForm"  (ngSubmit)="onSubmit(int)">
+         <div class="row">
+          <!-- ------------- -->
+          <div class="col-sm-12 col-md-6 col-lg-4 " *ngFor="let in of allintrest">
+            <div class="border1">
+             <span class="m-top">{{in.name}}{{in.value}}</span> 
+             <label class="switch ">
+                <input type="checkbox" class="primary" ngModel name="{{in.id}}"  [ngModel]="in.value">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>         
+
+        </div>
+          <!-- ------------- -->
+          <!-- ********************* -->                 
+          <div class="form-group">
+            <button class="button button1" type="Submit" [disabled]="submited">Proceed Now!</button>
+          </div>
+     
+        </form>
+
+
+      </div>
+    </div>
+  </article>
+
+</div>

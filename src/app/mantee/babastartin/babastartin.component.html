@@ -1,0 +1,122 @@
+<div class="blog_left_sidebar">   
+    <article class="blog_item">
+        <div class="alert alert-success" *ngIf="msg">  
+            <button type="button" class="close" data-dismiss="alert">&times;</button>                
+            <strong>Success!</strong> {{msg}}
+        </div>
+      <div class="blog_details">
+      <img class="center" src="assets/img/svg/BabaStart logo.svg">
+
+        <div class="form white-background" *ngIf="!projects">
+          <form   [formGroup]="fund" (ngSubmit)="register()">
+            <!-- ------------------------------------------- -->
+            <div class="form-group">
+              <label>Describe your startup in 50 words.</label>
+              <textarea formControlName="description" name="description"[class.invalid]="description.invalid && description.touched" 
+              class="form-control" type="text" rows="5"></textarea>
+              <small class="form-text text-danger" *ngIf="description.invalid && description.touched">This is required</small>
+
+            </div>
+            <div class="form-group">
+              <label>Describe your team. </label>
+              <textarea formControlName="team_desc" name="team_desc" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Have you raised any?money from friends/family or have put in your own money?</label><br>
+              <label><input type="radio" formControlName="raised_money" name="raised_money" value='Yes'> &nbsp;Yes &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label>
+              <label><input type="radio" formControlName="raised_money" name="raised_money" value='No'>  &nbsp;No</label>      
+            </div>
+            <div class="form-group">
+              <label>How much money you want to raise?</label>
+              <input type="number" formControlName="money_needed" name="money_needed" class="form-control" >
+            </div>
+            <div class="form-group">
+              <label>How much equity are you willing to give?</label>
+              <input type="number" formControlName="equity" name="equity" class="form-control" >
+            </div>
+
+            <div class="form-group">
+              <label>Attach a Google slide pitch deck link</label>
+              <input type="url" formControlName="g_s_link" name="g_s_link" class="form-control" >
+            </div>
+            <div class="form-group">
+              <label>Company URL</label>
+              <input type="url" formControlName="c_url" name="c_url" class="form-control" >
+            </div>
+            <div class="form-group">
+              <label>App download link, if available</label>
+              <input type="url" formControlName="p_url" name="p_url" class="form-control" >
+            </div>
+            <div class="form-check">
+              <input  [class.invalid]="terms.invalid && terms.touched"  formControlName="term" name="term" id="agree" class="form-check-input" type="checkbox">
+              <label for="agree" class="form-check-label"><a href="http://about.mentorbaba.co/privacy.html">Agree to our Terms and Privacy Policy</a></label>
+              <br>
+              <small class="form-text text-danger" *ngIf="terms.invalid && terms.touched">This Field is required</small>
+  
+            </div>           
+            <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+            <div class="form-group">
+              <br>
+              <button [disabled]="fund.invalid"  class="button button" type="Submit">Submit</button>
+            </div>
+  
+          </form>
+
+          
+  
+        </div>
+        <div class="form white-background" *ngIf="projects">
+          <div class="row" >
+            <div class="col-md-9 auto-mar">
+             <br>
+            <div class="desc" *ngIf="projects?.description" >
+              <h5 class="quary">Describe your startup in 50 words.</h5>
+              <p class="ans">{{projects?.description}}</p>
+            </div>
+            <div class="desc" *ngIf="projects?.team_desc">
+                <h5 class="quary">Describe your team.</h5>
+                <p class="ans">{{projects?.team_desc}}</p>
+              </div>
+              <div class="desc" *ngIf="projects?.raised_money">
+                  <h5 class="quary">
+                      Have you raised any?money from friends/family or have put in your own money?</h5>
+                  <p class="ans">{{projects?.raised_money}}</p>
+                </div>
+                <div class="desc" *ngIf="projects?.money_needed">
+                    <h5 class="quary">How much money you want to raise?</h5>
+                    <p class="ans">{{projects?.money_needed }}</p>
+                  </div>
+                  <div class="desc" *ngIf="projects?.equity">
+                      <h5 class="quary">How much equity are you willing to give?</h5>
+                      <p class="ans">{{projects?.equity}}</p>
+                    </div>
+                    <div class="desc" *ngIf="projects?.g_s_link">
+                        <h5 class="quary">Attach a Google slide pitch deck link</h5>
+                        <p class="ans">
+                            <a [href]="projects?.g_s_link">Link</a>
+                         </p>
+                      </div>
+                      <div class="desc" *ngIf="projects?.c_url">
+                          <h5 class="quary">Company URL</h5>
+                          <p class="ans">
+                              <a [href]="projects?.c_url">Link</a>
+                           </p>
+                        </div>
+                        <div class="desc" *ngIf="projects?.p_url">
+                            <h5 class="quary">App download link, if available</h5>
+                            <p class="ans">
+                               <a [href]="projects?.p_url">Link</a>
+                              
+                             </p>
+                          </div>
+                          <div class="desc">
+                              <button class="button white" (click)="projectDetail()">Project Detail</button>
+                          </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </article>
+  
+  </div>

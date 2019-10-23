@@ -1,0 +1,195 @@
+<div class="row mb-5" *ngFor="let post of allPost; let last = last;let i = index;">
+  <div class="col-xl-2 col-md-3">
+    <div class="thumb-wrapper1">
+      <div class="img-box">
+        <img src="{{post.image}}" class="img-responsive img-fluid img-circle imgch" alt=""> </div>
+      <div class="thumb-content">
+        <h6 class="username">@{{post.username}}</h6>
+        <h6 class="name-co">{{post.name}}</h6>
+        <p class="name-co text-case">{{post.role}}</p>
+        <a class="button btn-ch-fo" *ngIf="!post.follow" (click)="follow(post.user_key)">Follow</a>
+        <a class="button btn-ch-fo" *ngIf="post.follow">Following</a>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-10 col-md-9">
+    <p class="cal"> <i class="fa fa-calendar" aria-hidden="true"></i> {{post.date | date :'longDate'}}</p>
+    <div class="white-bg">
+      <div class="white-bg-inner">
+
+        <div *ngIf="post.video" class="tex-center">
+          <iframe [src]="geturl(post.video)" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="white-bg-inner">
+        <div class="tex-center">
+          <div class="card-deck-img" *ngIf="post.photo1">
+
+            <div class="row">
+
+              <div class="col-md-3 col-sm-6 img-col-ch" *ngIf="post.photo1">
+                <a href="{{post.photo1}}" data-lightbox="roadtrip"><img class="img-tile img-left img-list"
+                    [src]="post.photo1"></a>
+              </div>
+              <div class="col-md-3 col-sm-6 img-col-ch" *ngIf="post.photo2">
+                <a href="{{post.photo2}}" data-lightbox="roadtrip"><img class="img-tile img-right img-list"
+                    [src]="post.photo2"></a>
+              </div>
+              <div class="col-md-3 col-sm-6 img-col-ch" *ngIf="post.photo3">
+                <a *ngIf="post.photo3" href="{{post.photo3}}" data-lightbox="roadtrip"><img
+                    class="img-tile img-left img-list" [src]="post.photo3"></a>
+              </div>
+              <div class="col-md-3 col-sm-6 img-col-ch" *ngIf="post.photo4">
+                <a *ngIf="post.photo4" href="{{post.photo4}}" data-lightbox="roadtrip"><img
+                    class="img-tile img-right img-list" [src]="post.photo4"></a>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+      </div>
+      <div class="white-bg-inner">
+        <div *ngIf="post.description" class="tex-center">
+          <p class="description">{{post.description}}</p>
+        </div>
+        <div class="tex-right" *ngIf="post.category">
+          <div class="tex-right" *ngIf="post.category">
+
+            <span *ngFor="let cat of post.category" class="cat">{{cat}}</span>
+          </div>
+
+        </div>
+        <div class="white-bg-inner tex-right">
+          <div *ngIf="post.comment!=0" class="comment-new cusr-point" (click)="showComment(post.post_key,i)"><i
+              class="far fa-comment">
+            </i> {{post.comment}} Comment</div>
+          <div *ngIf="post.comment==0" class="comment-new"><i class="far fa-comment">
+            </i> {{post.comment}} Comment</div>
+          <div *ngIf="!post.like_status" class="comment-new cusr-point" (click)="addLike(post.post_key,i)"><i
+              class="far fa-heart" aria-hidden="true"></i> {{post.like}}</div>
+
+          <div *ngIf="post.like_status" class="comment-new"><i class="fa fa-heart" aria-hidden="true"></i> {{post.like}}
+          </div>
+
+        </div>
+
+      </div>
+      <div class="comment">
+        <div class="media">
+          <img class="align-self-start img-comment" [src]="user_image" alt="">
+          <div class="media-body">
+              <div class="input-group ">
+                  <input type="text" [(ngModel)]="post.comment_write" class="form-control" placeholder="Post Comment..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                     <button (click)="addComment(post.post_key,post.user_key,i)" [disabled]="post.comment_write==''" type="submit"
+                    class="input-group-text color-white" id="basic-addon2">Add</button>
+                  </div>
+                </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="comment2" *ngFor="let comm of post.all_comment;let ci = index">
+
+      <div *ngIf="post.show_comment">
+        <div *ngIf="post.comment_limit>=ci">
+          <!-- ===============================comment==================================== -->
+
+          <div class="row mt-5">
+            <div class="col-le">
+              <div class="thumb-wrapper1">
+                <div class="img-box">
+                  <img src="{{comm.image}}" class="img-responsive img-fluid img-circle img-comm" alt=""> </div>
+                <div class="thumb-content">
+                  <h6 class="username">@{{comm.user_name}}</h6>
+                  <h6 class="name-co">{{comm.name}}</h6>
+                  <p class="name-co text-case">{{comm.role}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <p class="cal"> <i class="fa fa-calendar" aria-hidden="true"></i> {{comm.date | date :'longDate'}}</p>
+              <div class="white-bg">
+                <div class="white-bg-inner white-bg-inner-ch ">
+                  {{comm.comment}}
+
+                </div>
+              </div>
+              <!--  -->
+              <div class="white-bg-inner white-bg tex-right">
+                <div class="comment-new cusr-point" (click)="allReplyComment(post.post_key,i,comm.id,ci)"><i
+                    class="far fa-comment"> {{comm.reply_count}}
+                  </i> Reply</div>
+              </div>
+              <div class="white-bg-inner white-bg tex-right">
+                <!-- ========================================= -->
+                <div class="comment">
+                  <div class="media">
+                    <img class="align-self-start img-comment" [src]="user_image" alt="">
+                    <div class="media-body">
+                      <div class="input-group ">
+                          <input type="text" [(ngModel)]="comm.reply_write" class="form-control" placeholder="Reply Comment..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                             <button (click)=" replyComment(post.post_key,i,comm.id,comm.user_key,ci)" [disabled]="comm.reply_write==''" type="submit"
+                            class="input-group-text color-white" id="basic-addon2">Reply</button>
+                          </div>
+                        </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- -----------------reply ------------------ -->
+              <div class="white-bg-inner  tex-right" *ngIf="comm.reply_show">
+                <!-- ========================================= -->
+                <!-- {{comm.reply|json}} -->
+                <div class="row mt-1" *ngFor="let commReply of comm.reply">
+                  <div class="col-le2">
+                    <div class="thumb-wrapper1">
+                      <div class="img-box">
+                        <img src="{{commReply.image}}" class="img-responsive img-fluid img-circle img-comm" alt="">
+                      </div>
+                      <div class="thumb-content">
+                        <h6 class="username">@{{commReply.username}}</h6>
+                        <h6 class="name-co">{{commReply.name}}</h6>
+                        <p class="name-co text-case">{{commReply.role}}</p>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <p class="cal"> <i class="fa fa-calendar" aria-hidden="true"></i>
+                      {{commReply.date | date :'longDate'}}</p>
+                    <div class="gray-bg">
+                      <div class="white-bg-inner white-bg-inner-ch ">
+                        {{commReply.reply}}
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ========================================= -->
+              </div>
+              <!--  -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="post.show_more">
+      <div class=" col tex-right">
+        <button *ngIf="(post.comment_limit+1)!=post.comment" class="button btn-more-comm"
+          (click)="moreComment(post.post_key,i)">More Comment..</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="row ">
+  <div class="col-md-10 offset-md-2 tex-center">
+    <button *ngIf="!!allPost" class="button load " (click)="chk()" type="button"> More posts ..</button>
+  </div>

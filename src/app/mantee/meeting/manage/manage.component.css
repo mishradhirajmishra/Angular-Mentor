@@ -1,0 +1,89 @@
+h6.bold {
+    font-weight: bold;
+}
+.center{text-align: center}
+img.img-fluid.circle {
+    border-radius: 50%;
+}
+button.button.button-ch {
+    padding: 5px;
+    font-size: 14px;
+    width: 80%;
+    margin-bottom: 10px;
+}
+.text-color1{
+    text-align: center;
+   margin-bottom: 0px;
+   font-weight: bold;
+}
+img.img-fluid.circle {
+    width: 60%;
+}
+p.text-green {
+    color: #0bc00b;
+}
+.red{
+    background-color: red;
+}
+.green{
+    background-color: #0bc00b;
+}
+.pink{
+    background-color: red;
+}
+button.close {
+    float: right;
+    color: red;
+}
+.padd{
+    padding-right: 30px;
+    padding-top: 10px;
+}
+button.button.button-ch.green.curs {
+    cursor: default !important;
+}
+.button-ch-model {
+    font-size: 14px;
+}
+.curs-point{
+    cursor: pointer;
+}
+.hide{display: none;}
+button.btn.button-ch.green.btn-primary.dropdown-toggle {
+    width: 80%;
+    border-radi: 20px;
+    border-radius: 20px;
+}
+ul.dropdown-menu.show{
+    width: 80%;
+    padding: 10px;
+    background-color: #0bc00b;
+    color: white;
+}
+.btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #0bc00b!important;
+    border-color: #0bc00b!important;
+}
+ul.dropdown-menu.show li {border-bottom: 1px solid white;}
+ul.dropdown-menu.show {
+    width: 80%;
+    padding: 10px;
+    background-color: #0bc00b!important;
+    color: white!important;
+}
+.fa,fab{margin-right: 8px;}
+i.fab.fa-skype {
+    margin-right: 10px;
+}
+a.skaip-buttons-cmd-call,a.skaip-buttons-cmd-videocall,a.skaip-buttons-cmd-voicemail,a.skaip-buttons-cmd-chat,a.skaip-buttons-cmd-sendfile {
+    color: white;
+    cursor: pointer;
+}
+a.button.sky {
+    float: right;
+    font-size: 12px;
+    border: 2px solid gray;
+    padding: 0px 20px;
+    background-color: red;
+}

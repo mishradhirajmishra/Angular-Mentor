@@ -1,0 +1,77 @@
+
+.full{width:100%; margin-bottom: 20px;}
+.red{background-color: red;}
+.white{background-color:white;color: #1F3291;border: 1px solid #1F3291}
+.testimonial1{
+    background: #fff;
+    border-radius: 10px;
+}
+.card1 {
+    margin-top: 20px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    
+}
+.left{margin-left: 30px;margin-right: 30px;}
+.blue-desc1 {
+    font-size: 14px;
+    color: #1F3291;
+}
+span {
+    background-color:  #1F3291;
+    padding: 4px 20px;
+    border-radius: 10px;
+}
+.ngx-pagination .current {
+padding: 0px !important;
+}
+.button-sm {
+    margin: 0px auto;
+    padding: 4px 20px;
+    text-align: center;
+}
+img.img-fluid {
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+}
+.full{    width: 100%;}
+.red-bg {
+    background-color: red;
+}
+.green-bg {
+    background-color: green;
+}
+.orange-bg {
+    background-color: orange;
+}
+button.button.button-sm.full.rejected {
+    background-color: red;
+}
+button.button.button-sm.full.approved {
+    background-color: green;
+}
+button.button.button-sm.full.pending {
+    background-color: orange;
+}
+.col-md-12.auto {
+    text-align: center!important;
+}
+li.pagination-previous.disabled {
+    display: none !important;
+}
+li.pagination-next.disabled {
+    display: none!important;
+}
+li.current {
+    background-color: #1F3291 !important;
+}
+.col-md-3 {
+    text-align: center;
+}
+
+.col-md-4.text-center {
+    margin-bottom: 30px!important;
+}
+button.button.button1.full {
+    padding: 8px;
+}

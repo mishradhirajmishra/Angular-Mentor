@@ -1,0 +1,47 @@
+button.button.button1 {
+    width: 100%;
+}
+section.blog_area.section-margin-large {
+    background-color: #f7f2f2;
+}
+.form-control{
+border: none;
+border-bottom: 1px solid gray;
+border-radius: 0px; padding-left: 0px}
+.form-group {
+    margin-top: 20px !important;
+}
+.white {
+    background-color: white;
+    color: #1F3291;
+    border: 1px solid #1F3291;
+}
+/* ============================ */
+.invalid{ border-bottom: 1px solid red;}
+input{background-color: transparent;}
+/* ----------------------------------------- */
+#cpatchaTextBox{
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#submit{
+  background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+canvas{
+  /*prevent interaction with the canvas*/
+  pointer-events:none;
+}
+span.ref {
+    margin-right: 55%;
+    float: right;
+    font-size: 25px;
+}

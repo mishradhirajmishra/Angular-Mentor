@@ -1,0 +1,21 @@
+button.button.button1.btn-pad-meet {
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    padding: 6px 0px;
+}
+.container.cont-padd {
+    padding: 0px 50px;
+}
+.white{
+    background-color: white;
+    color: #1F3291;
+    border: 1px solid #1F3291;
+}
+img.img-fluid-right {
+    float: right;
+}
+.blue-bg{
+    background-color: #1F3291;
+    color: white;
+}
