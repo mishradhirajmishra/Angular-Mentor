@@ -25,7 +25,7 @@
     "angular-2-daterangepicker": "^1.1.52",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mongoose": "^5.7.3",
     "ng-pick-datetime": "^7.0.0",
     "ngx-filter-pipe": "^2.1.2",
